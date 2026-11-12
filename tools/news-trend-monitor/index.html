@@ -1,0 +1,80 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>News &amp; Trend Monitor (Worldwide News + Hacker News) | Dataset Works</title><meta name="description" content="Track any company, product or topic across worldwide online news (100+ languages) and Hacker News, with a coverage trend per term. Clean, deduplicated articles "><link rel="canonical" href="https://datasetworks.dev/tools/news-trend-monitor/">
+<meta property="og:title" content="News &amp; Trend Monitor (Worldwide News + Hacker News) | Dataset Works"><meta property="og:description" content="Track any company, product or topic across worldwide online news (100+ languages) and Hacker News, with a coverage trend per term. Clean, deduplicated articles "><meta property="og:site_name" content="Dataset Works">
+<meta property="og:image" content="https://datasetworks.dev/logo-icon-512.png"><link rel="icon" href="/logo-icon.svg"><link rel="stylesheet" href="/style.css"></head><body>
+<header><img src="/logo-icon.svg" alt=""><a class="brand" href="/">Dataset Works</a></header>
+<main><section class="hero"><h1>News &amp; Trend Monitor (Worldwide News + Hacker News)</h1><p>Track any company, product or topic across worldwide online news (100+ languages) and Hacker News, with a coverage trend per term. Clean, deduplicated articles for monitoring, research and AI agents.</p>
+<p><a class="btn" href="https://apify.com/datasetworks/news-trend-monitor" rel="sponsored">Try it on Apify</a> <span class="price">$0.01 per search term + $1.00 per 1,000 articles</span></p></section>
+<article><p><strong>Track any company, product or topic across worldwide online news and Hacker News, and see whether coverage is rising or falling.</strong></p>
+<p>Give it search terms. It returns every matching article in your time window as one clean, deduplicated table, plus a coverage trend for each term. News covers outlets in 100+ languages and most countries, so it works for emerging markets as well as the US and Europe.</p>
+<h2>Sample output</h2>
+<table>
+<thead>
+<tr>
+<th>query</th>
+<th>source</th>
+<th>publishedAt</th>
+<th>title</th>
+<th>domain</th>
+<th>sourceCountry</th>
+<th>points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Flipkart</td>
+<td>news</td>
+<td>2026-11-12</td>
+<td>Festive GMV up 17%, But Phone Demand Low</td>
+<td>economictimes.indiatimes.com</td>
+<td>India</td>
+<td></td>
+</tr>
+<tr>
+<td>Nvidia</td>
+<td>news</td>
+<td>2026-11-12</td>
+<td>Military-linked Chinese university bought Nvidia H200 chips despite US blacklist</td>
+<td>thehindu.com</td>
+<td>India</td>
+<td></td>
+</tr>
+<tr>
+<td>Nvidia</td>
+<td>hackernews</td>
+<td>2026-11-12</td>
+<td>AMD EPYC 9006 Venice vs. Nvidia Vera Benchmarks for HPC</td>
+<td>phoronix.com</td>
+<td></td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<p>Each row also has <code>url</code>, <code>language</code>, <code>comments</code> and <code>discussionUrl</code> (Hacker News) and <code>fetchedAt</code>.</p>
+<p>The <code>SUMMARY</code> record in the key-value store gives, per term: article counts, a news-volume timeline, and <code>changePercent</code>, the change in coverage between the first and second half of the window (e.g. "Nvidia: +144% over 7 days").</p>
+<h2>How to use</h2>
+<ol>
+<li>Add <strong>Search terms</strong>: company names, products, topics. Multi-word terms match as a phrase.</li>
+<li>Pick a <strong>Time window</strong> (last hour to last 90 days).</li>
+<li>Optional: limit news to a <strong>language</strong> (e.g. <code>hindi</code>) or <strong>source country</strong> (e.g. <code>india</code>, <code>nigeria</code>, <code>brazil</code>).</li>
+<li>Run, or schedule it daily on Apify to get a fresh feed and trend each morning.</li>
+</ol>
+<h2>Use cases</h2>
+<ul>
+<li>Competitor and brand monitoring.</li>
+<li>Market and investment research, including emerging markets.</li>
+<li>Trend spotting: which topics are gaining coverage.</li>
+<li>A news feed for AI agents and dashboards.</li>
+</ul>
+<h2>Pricing</h2>
+<p><strong>$0.01 per search term</strong> plus <strong>$1 per 1,000 articles</strong> returned. Example: 5 terms with 50 articles each costs $0.30. Platform usage is included.</p>
+<p>Note: the worldwide news source limits how fast requests can be made, so runs take about a minute per search term. This is deliberate: we stay within the source's published limits.</p>
+<h2>For AI agents</h2>
+<p>Call it through the Apify API or the Apify MCP server with <code>{"queries": ["Stripe"], "timespan": "7d", "maxArticlesPerQuery": 20}</code>. Every row has the same fields, and the SUMMARY record gives a one-number trend per term.</p>
+<h2>Data and responsibility</h2>
+<p>News articles come from the GDELT Project's free public API (gdeltproject.org), which indexes online news worldwide; Hacker News stories come from its official public search API. We return headlines, links and metadata, not full article text, and no author or user data. We follow each source's rate limits.</p>
+<h2>Support</h2>
+<p>Found a bug or need a source added? Open an issue on this page and we'll reply within one working day.</p>
+<p>Built and maintained by <strong>Dataset Works</strong>.</p></article><p><a class="btn" href="https://apify.com/datasetworks/news-trend-monitor" rel="sponsored">Open News &amp; Trend Monitor (Worldwide News + Hacker News) on Apify</a></p></main>
+<footer><p>Dataset Works builds data tools that do one job well, from public business data only. Tools run on the <a href="https://apify.com" rel="sponsored">Apify</a> platform, which handles accounts and billing. Questions or bugs: open an issue on the tool's Apify page.</p><p>© 2026 Dataset Works</p></footer>
+</body></html>

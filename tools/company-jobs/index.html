@@ -1,0 +1,97 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ATS Job Listings: Greenhouse, Lever, Ashby, Personio, Recruitee | Dataset Works</title><meta name="description" content="Get every open role at a list of companies in one clean table, from their official public Greenhouse, Lever, Ashby, Personio and Recruitee job boards. Same fiel"><link rel="canonical" href="https://datasetworks.dev/tools/company-jobs/">
+<meta property="og:title" content="ATS Job Listings: Greenhouse, Lever, Ashby, Personio, Recruitee | Dataset Works"><meta property="og:description" content="Get every open role at a list of companies in one clean table, from their official public Greenhouse, Lever, Ashby, Personio and Recruitee job boards. Same fiel"><meta property="og:site_name" content="Dataset Works">
+<meta property="og:image" content="https://datasetworks.dev/logo-icon-512.png"><link rel="icon" href="/logo-icon.svg"><link rel="stylesheet" href="/style.css"></head><body>
+<header><img src="/logo-icon.svg" alt=""><a class="brand" href="/">Dataset Works</a></header>
+<main><section class="hero"><h1>ATS Job Listings: Greenhouse, Lever, Ashby, Personio, Recruitee</h1><p>Get every open role at a list of companies in one clean table, from their official public Greenhouse, Lever, Ashby, Personio and Recruitee job boards. Same fields across platforms, keyword and remote filters, optional full descriptions. Built for spreadsheets and AI agents.</p>
+<p><a class="btn" href="https://apify.com/datasetworks/company-jobs" rel="sponsored">Try it on Apify</a> <span class="price">$1.50 per 1,000 jobs</span></p></section>
+<article><p><strong>Get every open role at a list of companies in one clean table, straight from their official public job boards.</strong></p>
+<p>Give it company names or job-board links. It finds each company's board on Greenhouse, Lever, Ashby, Personio or Recruitee and returns every open job with the same fields every time, whichever platform the company uses.</p>
+<h2>Sample output</h2>
+<table>
+<thead>
+<tr>
+<th>company</th>
+<th>platform</th>
+<th>title</th>
+<th>location</th>
+<th>department</th>
+<th>employmentType</th>
+<th>isRemote</th>
+<th>compensation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>stripe</td>
+<td>greenhouse</td>
+<td>AI Engineer</td>
+<td>Chicago</td>
+<td>SA Transformation</td>
+<td></td>
+<td>false</td>
+<td></td>
+</tr>
+<tr>
+<td>palantir</td>
+<td>lever</td>
+<td>Backend Software Engineer - Application Development</td>
+<td>London, United Kingdom</td>
+<td>Dev</td>
+<td>Full-time</td>
+<td>false</td>
+<td></td>
+</tr>
+<tr>
+<td>ramp</td>
+<td>ashby</td>
+<td>Security Engineer, Cloud</td>
+<td>New York, NY (HQ)</td>
+<td>Engineering / Backend</td>
+<td>Full-time</td>
+<td>true</td>
+<td>$211.4K – $290.6K • Offers Equity</td>
+</tr>
+<tr>
+<td>notion</td>
+<td>ashby</td>
+<td>Software Engineer, AI Connections (Developer Platform)</td>
+<td>San Francisco, California</td>
+<td>Engineering</td>
+<td>Full-time</td>
+<td>true</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Every row also has <code>jobId</code>, <code>url</code> (the apply link), <code>postedAt</code>, <code>updatedAt</code>, <code>scrapedAt</code> and, if you ask for it, <code>description</code> as clean plain text.</p>
+<h2>How to use</h2>
+<ol>
+<li>Add companies to <strong>Companies</strong>. Any of these work:</li>
+<li>a board name: <code>stripe</code></li>
+<li>a board name with a platform: <code>lever:palantir</code>, <code>ashby:ramp</code>, <code>greenhouse:airbnb</code>, <code>personio:personio</code>, <code>recruitee:bunq</code></li>
+<li>a job-board link: <code>https://jobs.lever.co/palantir</code>, <code>https://jobs.ashbyhq.com/ramp</code>, <code>https://boards.greenhouse.io/stripe</code>, <code>https://bunq.recruitee.com</code></li>
+<li>Optional filters: <strong>Title keywords</strong> (comma-separated, e.g. <code>engineer, data</code>), <strong>Remote jobs only</strong>, <strong>Max jobs per company</strong>.</li>
+<li>Tick <strong>Include full job description</strong> if you want the text of each posting.</li>
+<li>Run. Results appear in the dataset; export to CSV, Excel or JSON, or read them via the API.</li>
+</ol>
+<p>The default input works with no setup. A <code>SUMMARY</code> record in the key-value store lists how many jobs each company returned, and which companies had no board found.</p>
+<p><strong>Tip:</strong> the board name is the last part of a company's careers link, e.g. <code>jobs.lever.co/</code><strong><code>palantir</code></strong>.</p>
+<h2>Use cases</h2>
+<ul>
+<li>Track hiring at competitors, customers or portfolio companies.</li>
+<li>Spot companies hiring for a role you sell into (sales signals).</li>
+<li>Build job boards and job alerts for a niche.</li>
+<li>Feed AI agents and research tools with up-to-date hiring data.</li>
+</ul>
+<h2>Pricing</h2>
+<p><strong>$1.50 per 1,000 jobs</strong> ($0.0015 per job returned). No charge for companies with no jobs found. Platform usage is included. Example: 5 companies with 500 open roles in total costs $0.75.</p>
+<h2>For AI agents</h2>
+<p>Call it through the Apify API or the Apify MCP server with <code>{"companies": ["stripe", "lever:palantir"]}</code>. It returns one JSON object per job with a fixed set of fields, so agents can rely on the shape. Use <code>keyword</code>, <code>remoteOnly</code> and <code>maxJobsPerCompany</code> to keep responses small.</p>
+<h2>Data and responsibility</h2>
+<p>Data comes only from the public job-board APIs that Greenhouse, Lever, Ashby, Personio and Recruitee provide so companies can publish their jobs. The tool collects job postings, not people: no candidate or employee data, no logins, nothing behind access controls. It follows each site's robots.txt and rate limits.</p>
+<h2>Support</h2>
+<p>Found a bug or need a field? Open an issue on this page and we'll reply within one working day.</p>
+<p>Built and maintained by <strong>Dataset Works</strong>.</p></article><p><a class="btn" href="https://apify.com/datasetworks/company-jobs" rel="sponsored">Open ATS Job Listings: Greenhouse, Lever, Ashby, Personio, Recruitee on Apify</a></p></main>
+<footer><p>Dataset Works builds data tools that do one job well, from public business data only. Tools run on the <a href="https://apify.com" rel="sponsored">Apify</a> platform, which handles accounts and billing. Questions or bugs: open an issue on the tool's Apify page.</p><p>© 2026 Dataset Works</p></footer>
+</body></html>

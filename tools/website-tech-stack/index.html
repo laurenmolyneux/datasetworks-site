@@ -1,0 +1,64 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Website Tech Stack &amp; Company Profile Lookup | Dataset Works</title><meta name="description" content="Find the technologies a company website uses (CMS, ecommerce, analytics, ad pixels, chat, CDN, frameworks) plus its name, description, language and official soc"><link rel="canonical" href="https://datasetworks.dev/tools/website-tech-stack/">
+<meta property="og:title" content="Website Tech Stack &amp; Company Profile Lookup | Dataset Works"><meta property="og:description" content="Find the technologies a company website uses (CMS, ecommerce, analytics, ad pixels, chat, CDN, frameworks) plus its name, description, language and official soc"><meta property="og:site_name" content="Dataset Works">
+<meta property="og:image" content="https://datasetworks.dev/logo-icon-512.png"><link rel="icon" href="/logo-icon.svg"><link rel="stylesheet" href="/style.css"></head><body>
+<header><img src="/logo-icon.svg" alt=""><a class="brand" href="/">Dataset Works</a></header>
+<main><section class="hero"><h1>Website Tech Stack &amp; Company Profile Lookup</h1><p>Find the technologies a company website uses (CMS, ecommerce, analytics, ad pixels, chat, CDN, frameworks) plus its name, description, language and official social profiles. Bulk, fast, built for sales and AI agents.</p>
+<p><a class="btn" href="https://apify.com/datasetworks/website-tech-stack" rel="sponsored">Try it on Apify</a> <span class="price">$2.00 per 1,000 websites</span></p></section>
+<article><p><strong>Find out what technology any company's website runs on, plus its name, description and official social profiles, for a whole list of domains at once.</strong></p>
+<p>Give it domains. For each one it returns the detected technologies (about 100: CMS, ecommerce platform, analytics, ad pixels, live chat, marketing automation, payments, CDN, hosting, frameworks) and a short company profile, in one clean row.</p>
+<h2>Sample output</h2>
+<table>
+<thead>
+<tr>
+<th>domain</th>
+<th>siteName</th>
+<th>technologyNames</th>
+<th>language</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>allbirds.com</td>
+<td>Allbirds</td>
+<td>Shopify, Tailwind CSS, Google Tag Manager, Microsoft Clarity, Cloudflare, OneTrust</td>
+<td>en</td>
+</tr>
+<tr>
+<td>notion.so</td>
+<td>Notion</td>
+<td>Contentful, Next.js, Tailwind CSS, Cloudflare, Vercel</td>
+<td>en</td>
+</tr>
+<tr>
+<td>wordpress.org</td>
+<td>WordPress.org</td>
+<td>WordPress, Google Tag Manager, Nginx</td>
+<td>en</td>
+</tr>
+</tbody>
+</table>
+<p>Each row also has <code>technologies</code> (name, category, version where known), <code>categories</code>, <code>title</code>, <code>description</code>, <code>ogImage</code>, <code>favicon</code>, <code>socialProfiles</code> (the company's own LinkedIn company page, X, Facebook, Instagram, YouTube, GitHub, TikTok), <code>server</code>, <code>poweredBy</code>, <code>https</code>, <code>responseMs</code>, <code>hasRobotsTxt</code>, <code>sitemaps</code> and <code>checkedAt</code>.</p>
+<h2>How to use</h2>
+<ol>
+<li>Paste domains into <strong>Websites</strong>, e.g. <code>stripe.com</code>.</li>
+<li>Run. Export as CSV, Excel or JSON, or call it via the API.</li>
+</ol>
+<h2>Use cases</h2>
+<ul>
+<li><strong>Sales prospecting:</strong> find every Shopify or HubSpot site in your lead list, or companies without analytics.</li>
+<li><strong>Lead enrichment:</strong> add a description, logo and social links to a list of company domains.</li>
+<li><strong>Competitor and market research:</strong> see which tools a market uses.</li>
+<li><strong>AI agents:</strong> give an agent quick, structured facts about a company from its domain.</li>
+</ul>
+<h2>Pricing</h2>
+<p><strong>$2 per 1,000 websites</strong> ($0.002 per website analysed). Websites that are unreachable or block automated access are free. Platform usage is included.</p>
+<h2>For AI agents</h2>
+<p>Call it via the Apify API or MCP server with <code>{"domains": ["example.com"]}</code>. One object per domain with fixed fields; failures come back as <code>status: "failed"</code> or <code>"skipped"</code> with a reason.</p>
+<h2>Data and responsibility</h2>
+<p>The tool loads each site's public homepage once, identifying itself as DatasetWorksBot, and follows robots.txt. It records company-level facts only: no personal names, emails or phone numbers. Social links are the company's own official profiles. Detection is based on public signatures in the page and response headers, so it can miss tools that load only after JavaScript runs.</p>
+<h2>Support</h2>
+<p>Found a wrong detection or want a technology added? Open an issue on this page and we'll reply within one working day.</p>
+<p>Built and maintained by <strong>Dataset Works</strong>.</p></article><p><a class="btn" href="https://apify.com/datasetworks/website-tech-stack" rel="sponsored">Open Website Tech Stack &amp; Company Profile Lookup on Apify</a></p></main>
+<footer><p>Dataset Works builds data tools that do one job well, from public business data only. Tools run on the <a href="https://apify.com" rel="sponsored">Apify</a> platform, which handles accounts and billing. Questions or bugs: open an issue on the tool's Apify page.</p><p>© 2026 Dataset Works</p></footer>
+</body></html>

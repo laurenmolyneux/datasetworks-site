@@ -1,0 +1,58 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shopify Store Products &amp; Prices Scraper | Dataset Works</title><meta name="description" content="Get the full product catalog of any Shopify store: prices, sale prices, stock, variants, vendors and tags, in one clean table. For price monitoring, competitor "><link rel="canonical" href="https://datasetworks.dev/tools/shopify-store-products/">
+<meta property="og:title" content="Shopify Store Products &amp; Prices Scraper | Dataset Works"><meta property="og:description" content="Get the full product catalog of any Shopify store: prices, sale prices, stock, variants, vendors and tags, in one clean table. For price monitoring, competitor "><meta property="og:site_name" content="Dataset Works">
+<meta property="og:image" content="https://datasetworks.dev/logo-icon-512.png"><link rel="icon" href="/logo-icon.svg"><link rel="stylesheet" href="/style.css"></head><body>
+<header><img src="/logo-icon.svg" alt=""><a class="brand" href="/">Dataset Works</a></header>
+<main><section class="hero"><h1>Shopify Store Products &amp; Prices Scraper</h1><p>Get the full product catalog of any Shopify store: prices, sale prices, stock, variants, vendors and tags, in one clean table. For price monitoring, competitor research and AI agents.</p>
+<p><a class="btn" href="https://apify.com/datasetworks/shopify-store-products" rel="sponsored">Try it on Apify</a> <span class="price">$0.80 per 1,000 products</span></p></section>
+<article><p><strong>Get the full product catalog of any Shopify store, with prices, sale prices, stock and variants, in one clean table.</strong></p>
+<p>Give it store domains. It reads each store's public product catalog and returns every product with the same fields every time. Ideal for price monitoring, competitor and market research, and feeding AI shopping or research agents.</p>
+<h2>Sample output</h2>
+<table>
+<thead>
+<tr>
+<th>store</th>
+<th>title</th>
+<th>vendor</th>
+<th>priceMin</th>
+<th>priceMax</th>
+<th>currency</th>
+<th>onSale</th>
+<th>available</th>
+<th>variantCount</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>allbirds.com</td>
+<td>Women's Wool Cruiser - Port (Port Sole)</td>
+<td>Allbirds</td>
+<td>120</td>
+<td>120</td>
+<td>USD</td>
+<td>false</td>
+<td>true</td>
+<td>13</td>
+</tr>
+</tbody>
+</table>
+<p>Each product also has <code>productId</code>, <code>url</code>, <code>handle</code>, <code>productType</code>, <code>tags</code>, <code>compareAtPriceMax</code>, <code>imageUrl</code>, <code>imageCount</code>, <code>createdAt</code>, <code>publishedAt</code>, <code>updatedAt</code>, <code>scrapedAt</code> and a <code>variants</code> list (id, title, SKU, price, compare-at price, availability).</p>
+<h2>How to use</h2>
+<ol>
+<li>Add store domains to <strong>Stores</strong>, e.g. <code>allbirds.com</code>.</li>
+<li>Optional: <strong>Keywords</strong> to filter by title, type or tags; <strong>Max products per store</strong>.</li>
+<li>Tick <strong>One row per variant</strong> for a row per size/colour with its own price, SKU and stock (best for price tracking in spreadsheets).</li>
+<li>Run, or schedule daily to track price changes and new products.</li>
+</ol>
+<p>A <code>SUMMARY</code> record lists how many products each store returned. Stores that don't publish a public catalog are listed with the reason and not charged.</p>
+<h2>Pricing</h2>
+<p><strong>$0.80 per 1,000 products</strong> ($0.0008 per result). Stores with no public catalog are free. Platform usage is included.</p>
+<h2>For AI agents</h2>
+<p>Call it via the Apify API or MCP server with <code>{"stores": ["allbirds.com"], "keyword": "runner", "maxProductsPerStore": 50}</code>. Results have fixed fields, so agents can compare prices across stores directly.</p>
+<h2>Data and responsibility</h2>
+<p>The tool reads only the product catalog that Shopify stores publish openly at <code>/products.json</code>. It collects product and price data only: no customer, order or personal data. It follows each store's robots.txt and crawl delays, and skips stores that restrict access rather than getting around it.</p>
+<h2>Support</h2>
+<p>Found a bug or need a field? Open an issue on this page and we'll reply within one working day.</p>
+<p>Built and maintained by <strong>Dataset Works</strong>.</p></article><p><a class="btn" href="https://apify.com/datasetworks/shopify-store-products" rel="sponsored">Open Shopify Store Products &amp; Prices Scraper on Apify</a></p></main>
+<footer><p>Dataset Works builds data tools that do one job well, from public business data only. Tools run on the <a href="https://apify.com" rel="sponsored">Apify</a> platform, which handles accounts and billing. Questions or bugs: open an issue on the tool's Apify page.</p><p>© 2026 Dataset Works</p></footer>
+</body></html>
