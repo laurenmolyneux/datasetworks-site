@@ -1,0 +1,73 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bulk DNS, SSL Certificate &amp; Email Security Lookup | Dataset Works</title><meta name="description" content="Check DNS records (A, AAAA, MX, NS, TXT, CNAME, SOA, CAA), SSL certificate expiry and issuer, email provider, SPF and DMARC for a list of domains. Flags unregis"><link rel="canonical" href="https://datasetworks.dev/tools/domain-dns-ssl-lookup/">
+<meta property="og:title" content="Bulk DNS, SSL Certificate &amp; Email Security Lookup | Dataset Works"><meta property="og:description" content="Check DNS records (A, AAAA, MX, NS, TXT, CNAME, SOA, CAA), SSL certificate expiry and issuer, email provider, SPF and DMARC for a list of domains. Flags unregis"><meta property="og:site_name" content="Dataset Works">
+<meta property="og:image" content="https://datasetworks.dev/logo-icon-512.png"><link rel="icon" href="/logo-icon.svg"><link rel="stylesheet" href="/style.css"></head><body>
+<header><img src="/logo-icon.svg" alt=""><a class="brand" href="/">Dataset Works</a></header>
+<main><section class="hero"><h1>Bulk DNS, SSL Certificate &amp; Email Security Lookup</h1><p>Check DNS records (A, AAAA, MX, NS, TXT, CNAME, SOA, CAA), SSL certificate expiry and issuer, email provider, SPF and DMARC for a list of domains. Flags unregistered domains. For IT, sales and AI agents.</p>
+<p><a class="btn" href="https://apify.com/datasetworks/domain-dns-ssl-lookup" rel="sponsored">Try it on Apify</a> <span class="price">$1.50 per 1,000 domain checkeds</span></p></section>
+<article><p><strong>Check DNS records, SSL certificate expiry, email provider, SPF and DMARC for a whole list of domains, in one clean row per domain.</strong></p>
+<p>Give it domains or URLs. For each one it returns the DNS records (A, AAAA, CNAME, MX, NS, TXT, SOA, CAA), who hosts the domain's DNS and email, its SPF and DMARC setup, and its SSL certificate (issuer, expiry date, days left, names covered, TLS version). Domains that don't exist in DNS are flagged as likely unregistered.</p>
+<h2>Sample output</h2>
+<table>
+<thead>
+<tr>
+<th>domain</th>
+<th>emailProvider</th>
+<th>dnsProvider</th>
+<th>dmarcPolicy</th>
+<th>sslIssuer</th>
+<th>sslDaysLeft</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>stripe.com</td>
+<td>Google Workspace</td>
+<td>Amazon Route 53</td>
+<td>reject</td>
+<td>DigiCert, Inc.</td>
+<td>177</td>
+</tr>
+<tr>
+<td>allbirds.com</td>
+<td>Microsoft 365</td>
+<td>MarkMonitor</td>
+<td>quarantine</td>
+<td>Let's Encrypt</td>
+<td>54</td>
+</tr>
+<tr>
+<td>notion.so</td>
+<td>(none)</td>
+<td>Cloudflare</td>
+<td>quarantine</td>
+<td>Google Trust Services</td>
+<td>57</td>
+</tr>
+</tbody>
+</table>
+<p>Each row also has <code>ipv4</code>, <code>ipv6</code>, <code>cname</code>, <code>mx</code> (priority and host), <code>nameservers</code>, <code>txt</code>, <code>soa</code>, <code>caa</code>, <code>spf</code>, <code>spfAll</code> (fail / softfail / neutral), <code>hasDmarc</code>, <code>dmarcSubdomainPolicy</code>, <code>dmarcPct</code>, <code>verifications</code> (services the domain is verified with, e.g. google, facebook, apple), <code>resolves</code>, <code>likelyUnregistered</code>, <code>sslValid</code>, <code>sslError</code>, <code>sslValidFrom</code>, <code>sslValidTo</code>, <code>sslNames</code>, <code>sslKeyBits</code>, <code>sslFingerprint256</code>, <code>tlsVersion</code> and <code>checkedAt</code>.</p>
+<h2>How to use</h2>
+<ol>
+<li>Paste domains into <strong>Domains</strong>, e.g. <code>stripe.com</code> (full URLs work too).</li>
+<li>Run. Export as CSV, Excel or JSON, or call it via the API. Schedule it daily to catch expiring certificates or DNS changes.</li>
+</ol>
+<h2>Use cases</h2>
+<ul>
+<li><strong>SSL expiry monitoring:</strong> list every certificate expiring in the next 30 days across your sites or clients.</li>
+<li><strong>Email deliverability and security audits:</strong> find domains with no DMARC, a weak <code>p=none</code> policy or a missing SPF record.</li>
+<li><strong>Sales prospecting:</strong> segment leads by email provider (Google Workspace vs Microsoft 365) or DNS/CDN provider.</li>
+<li><strong>Domain portfolio checks:</strong> see which names don't resolve or look unregistered.</li>
+<li><strong>AI agents:</strong> give an agent fast, structured facts about a domain's infrastructure.</li>
+</ul>
+<h2>Pricing</h2>
+<p><strong>$1.50 per 1,000 domains</strong> ($0.0015 per domain checked). Invalid domains and lookups that fail with a DNS server error are free. Platform usage is included.</p>
+<h2>For AI agents</h2>
+<p>Call it via the Apify API or MCP server with <code>{"domains": ["example.com"]}</code>. You get one object per domain with fixed field names; <code>status</code> is <code>ok</code>, <code>not-found</code> (no DNS, likely unregistered) or <code>failed</code> with an <code>error</code>. Set <code>checkSsl</code> or <code>checkDns</code> to <code>false</code> to skip a part.</p>
+<h2>Data and responsibility</h2>
+<p>DNS answers come from public resolvers (Cloudflare and Quad9). The SSL check makes one normal TLS connection to port 443, as a browser would. The tool does not query WHOIS or RDAP registries and does not return personal data: the SOA contact mailbox, DMARC report addresses and CAA contact records are left out. "Likely unregistered" is based on DNS only, so confirm with a registrar before buying a name.</p>
+<h2>Support</h2>
+<p>Need another record type or provider detected? Open an issue on this page and we'll reply within one working day.</p>
+<p>Built and maintained by <strong>Dataset Works</strong>.</p></article><p><a class="btn" href="https://apify.com/datasetworks/domain-dns-ssl-lookup" rel="sponsored">Open Bulk DNS, SSL Certificate &amp; Email Security Lookup on Apify</a></p></main>
+<footer><p>Dataset Works builds data tools that do one job well, from public business data only. Tools run on the <a href="https://apify.com" rel="sponsored">Apify</a> platform, which handles accounts and billing. Questions or bugs: open an issue on the tool's Apify page.</p><p>© 2026 Dataset Works</p></footer>
+</body></html>
