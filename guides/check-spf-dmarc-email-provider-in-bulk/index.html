@@ -1,0 +1,51 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Check SPF, DMARC and email provider for a list of domains | Dataset Works</title><meta name="description" content="Audit email security across many domains, or segment leads by Google Workspace vs Microsoft 365, from public DNS records."><link rel="canonical" href="https://datasetworks.dev/guides/check-spf-dmarc-email-provider-in-bulk/">
+<meta property="og:title" content="Check SPF, DMARC and email provider for a list of domains | Dataset Works"><meta property="og:description" content="Audit email security across many domains, or segment leads by Google Workspace vs Microsoft 365, from public DNS records."><meta property="og:site_name" content="Dataset Works">
+<meta property="og:image" content="https://datasetworks.dev/logo-icon-512.png"><link rel="icon" href="/logo-icon.svg"><link rel="stylesheet" href="/style.css"></head><body>
+<header><img src="/logo-icon.svg" alt=""><a class="brand" href="/">Dataset Works</a></header>
+<main><article><h1>Check SPF, DMARC and email provider for a list of domains</h1><p>Every domain publishes how it handles email in public DNS: which provider receives its mail (MX records), which servers may send for it (SPF) and what receivers should do with spoofed mail (DMARC). Reading those records for one domain is easy; for a few hundred it's tedious.</p>
+<h2>Two common reasons to do this</h2>
+<p><strong>Security and deliverability audits.</strong> Agencies, MSPs and IT teams check client domains for a missing DMARC record, a weak <code>p=none</code> policy, or an SPF record ending in <code>+all</code>. Since 2024 Gmail and Yahoo require SPF, DKIM and DMARC from bulk senders, so gaps here cost real deliverability.</p>
+<p><strong>Sales segmentation.</strong> If you sell a Microsoft 365 add-on, you want the companies that use Microsoft 365. The MX record tells you.</p>
+<h2>What you get</h2>
+<p>The <a href="/tools/domain-dns-ssl-lookup/">Bulk DNS, SSL Certificate &amp; Email Security Lookup</a> returns one row per domain with:</p>
+<table>
+<thead>
+<tr>
+<th>field</th>
+<th>example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>emailProvider</code></td>
+<td>Google Workspace, Microsoft 365, Proofpoint, Zoho Mail...</td>
+</tr>
+<tr>
+<td><code>spf</code> / <code>spfAll</code></td>
+<td>the SPF record, and whether it ends in fail, softfail or neutral</td>
+</tr>
+<tr>
+<td><code>hasDmarc</code> / <code>dmarcPolicy</code></td>
+<td>true / reject, quarantine or none</td>
+</tr>
+<tr>
+<td><code>dnsProvider</code></td>
+<td>Cloudflare, Amazon Route 53, GoDaddy...</td>
+</tr>
+<tr>
+<td><code>verifications</code></td>
+<td>services the domain is verified with (google, facebook, apple...)</td>
+</tr>
+</tbody>
+</table>
+<h2>Steps</h2>
+<ol>
+<li>Paste your domains into the tool and run it (set <code>checkSsl</code> to <code>false</code> if you only need DNS).</li>
+<li>Export to a spreadsheet and filter: <code>hasDmarc = false</code>, or <code>dmarcPolicy = none</code>, or <code>emailProvider = Microsoft 365</code>.</li>
+</ol>
+<h2>What it doesn't do</h2>
+<p>It reads public DNS only. It doesn't look up who owns a domain, and it leaves out DMARC report addresses and other contact details on purpose.</p>
+<p>Cost: $1.50 per 1,000 domains.</p><p><a class="btn" href="https://apify.com/datasetworks/domain-dns-ssl-lookup" rel="sponsored">Try the tool on Apify</a></p></article></main>
+<footer><p>Dataset Works builds data tools that do one job well, from public business data only. Tools run on the <a href="https://apify.com" rel="sponsored">Apify</a> platform, which handles accounts and billing. Questions or bugs: open an issue on the tool's Apify page.</p><p>© 2026 Dataset Works</p></footer>
+</body></html>

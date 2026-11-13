@@ -1,0 +1,28 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Find which companies use Shopify, HubSpot or any other technology | Dataset Works</title><meta name="description" content="Check a list of company websites for their CMS, ecommerce platform, analytics, chat and marketing tools, to build targeted lead lists."><link rel="canonical" href="https://datasetworks.dev/guides/find-websites-using-a-technology/">
+<meta property="og:title" content="Find which companies use Shopify, HubSpot or any other technology | Dataset Works"><meta property="og:description" content="Check a list of company websites for their CMS, ecommerce platform, analytics, chat and marketing tools, to build targeted lead lists."><meta property="og:site_name" content="Dataset Works">
+<meta property="og:image" content="https://datasetworks.dev/logo-icon-512.png"><link rel="icon" href="/logo-icon.svg"><link rel="stylesheet" href="/style.css"></head><body>
+<header><img src="/logo-icon.svg" alt=""><a class="brand" href="/">Dataset Works</a></header>
+<main><article><h1>Find which companies use Shopify, HubSpot or any other technology</h1><p>If you sell a Shopify app, a HubSpot integration or a replacement for Intercom, your best leads are the companies already using those tools. Their websites usually give it away in the page code.</p>
+<h2>What you get</h2>
+<p>The <a href="/tools/website-tech-stack/">Website Tech Stack &amp; Company Profile Lookup</a> loads each homepage once and returns:</p>
+<ul>
+<li><code>technologyNames</code> and <code>technologies</code>: about 100 detectable tools across CMS, ecommerce, analytics, ad pixels, live chat, marketing automation, payments, CDN and frameworks</li>
+<li><code>siteName</code>, <code>description</code>, <code>language</code> and the company's official <code>socialProfiles</code></li>
+<li><code>server</code>, <code>https</code>, <code>responseMs</code></li>
+</ul>
+<h2>Steps</h2>
+<ol>
+<li>Paste a list of domains (from a CRM export, a directory or a trade-show list) into <strong>Websites</strong>.</li>
+<li>Run and export to a spreadsheet.</li>
+<li>Filter <code>technologyNames</code> for the tool you care about, e.g. contains "Shopify" or does not contain "Google Analytics".</li>
+</ol>
+<h2>For enrichment and AI agents</h2>
+<p>Call it from your CRM workflow or agent with one domain at a time, and you get a short company profile plus its stack:</p>
+<pre><code>curl -X POST &quot;https://api.apify.com/v2/acts/datasetworks~website-tech-stack/run-sync-get-dataset-items?token=YOUR_TOKEN&quot; \
+  -H &quot;Content-Type: application/json&quot; -d '{&quot;domains&quot;: [&quot;allbirds.com&quot;]}'
+</code></pre>
+<p>Pair it with the <a href="/tools/domain-dns-ssl-lookup/">DNS &amp; email lookup</a> to add the company's email provider too.</p>
+<p>Cost: $2 per 1,000 websites. The tool follows robots.txt and collects company-level facts only.</p><p><a class="btn" href="https://apify.com/datasetworks/website-tech-stack" rel="sponsored">Try the tool on Apify</a></p></article></main>
+<footer><p>Dataset Works builds data tools that do one job well, from public business data only. Tools run on the <a href="https://apify.com" rel="sponsored">Apify</a> platform, which handles accounts and billing. Questions or bugs: open an issue on the tool's Apify page.</p><p>© 2026 Dataset Works</p></footer>
+</body></html>

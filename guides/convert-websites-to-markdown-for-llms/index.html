@@ -1,0 +1,25 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Convert web pages to clean Markdown for LLMs and RAG | Dataset Works</title><meta name="description" content="Turn any list of URLs or a whole site section into clean Markdown text, without menus, ads and cookie banners, ready for an LLM or vector database."><link rel="canonical" href="https://datasetworks.dev/guides/convert-websites-to-markdown-for-llms/">
+<meta property="og:title" content="Convert web pages to clean Markdown for LLMs and RAG | Dataset Works"><meta property="og:description" content="Turn any list of URLs or a whole site section into clean Markdown text, without menus, ads and cookie banners, ready for an LLM or vector database."><meta property="og:site_name" content="Dataset Works">
+<meta property="og:image" content="https://datasetworks.dev/logo-icon-512.png"><link rel="icon" href="/logo-icon.svg"><link rel="stylesheet" href="/style.css"></head><body>
+<header><img src="/logo-icon.svg" alt=""><a class="brand" href="/">Dataset Works</a></header>
+<main><article><h1>Convert web pages to clean Markdown for LLMs and RAG</h1><p>Feeding raw HTML to a language model wastes tokens on navigation, scripts and footers, and makes answers worse. What you want is the main text of the page, with headings, lists, tables and links kept.</p>
+<h2>What you get</h2>
+<p><a href="/tools/web-to-text/">Web to Text</a> fetches each page and returns <code>markdown</code> (the main content), <code>title</code>, <code>description</code>, <code>language</code>, <code>wordCount</code> and, if you ask, the page's <code>links</code>. It can also follow links within a site to a set depth, so you can grab a whole docs section in one run.</p>
+<h2>Steps</h2>
+<ol>
+<li>Add start URLs, e.g. a documentation homepage or a list of articles.</li>
+<li>Set how deep to follow links (0 = only the pages you listed).</li>
+<li>Run, then export JSON or pull it from the API straight into your chunking and embedding step.</li>
+</ol>
+<pre><code>curl -X POST &quot;https://api.apify.com/v2/acts/datasetworks~web-to-text/run-sync-get-dataset-items?token=YOUR_TOKEN&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;startUrls&quot;: [{&quot;url&quot;: &quot;https://en.wikipedia.org/wiki/Web_scraping&quot;}]}'
+</code></pre>
+<h2>Use it from an AI agent</h2>
+<p>The tool is available through Apify's MCP server, so an agent in Claude, Cursor or any MCP client can call it to read a page when it needs fresh information.</p>
+<h2>Responsible by default</h2>
+<p>It identifies itself honestly and follows each site's robots.txt, so pages a site has asked crawlers to avoid are skipped and not charged.</p>
+<p>Cost: $1 per 1,000 pages.</p><p><a class="btn" href="https://apify.com/datasetworks/web-to-text" rel="sponsored">Try the tool on Apify</a></p></article></main>
+<footer><p>Dataset Works builds data tools that do one job well, from public business data only. Tools run on the <a href="https://apify.com" rel="sponsored">Apify</a> platform, which handles accounts and billing. Questions or bugs: open an issue on the tool's Apify page.</p><p>© 2026 Dataset Works</p></footer>
+</body></html>

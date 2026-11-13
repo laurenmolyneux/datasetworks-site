@@ -1,0 +1,29 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to track competitor hiring from their careers pages | Dataset Works</title><meta name="description" content="Pull every open role at a list of companies from Greenhouse, Lever, Ashby, Personio and Recruitee job boards, and watch what they hire for."><link rel="canonical" href="https://datasetworks.dev/guides/track-competitor-hiring/">
+<meta property="og:title" content="How to track competitor hiring from their careers pages | Dataset Works"><meta property="og:description" content="Pull every open role at a list of companies from Greenhouse, Lever, Ashby, Personio and Recruitee job boards, and watch what they hire for."><meta property="og:site_name" content="Dataset Works">
+<meta property="og:image" content="https://datasetworks.dev/logo-icon-512.png"><link rel="icon" href="/logo-icon.svg"><link rel="stylesheet" href="/style.css"></head><body>
+<header><img src="/logo-icon.svg" alt=""><a class="brand" href="/">Dataset Works</a></header>
+<main><article><h1>How to track competitor hiring from their careers pages</h1><p>A company's open roles say a lot about its plans: a new country, a new product line, an AI team, a sales push. Most fast-growing companies post their jobs on an applicant tracking system (ATS) like Greenhouse, Lever or Ashby, and those boards are public.</p>
+<h2>What you get</h2>
+<p>The <a href="/tools/company-jobs/">ATS Job Listings tool</a> takes a list of companies and returns every open role, one row per job: <code>title</code>, <code>location</code>, <code>department</code>, <code>employmentType</code>, <code>isRemote</code>, <code>compensation</code> (where posted), <code>postedAt</code>, <code>url</code>, and optionally the full <code>description</code> as plain text.</p>
+<h2>Steps</h2>
+<ol>
+<li>Enter company board names, e.g. <code>stripe</code>, <code>lever:palantir</code>, <code>ashby:ramp</code>. The board name is the bit after the ATS domain in the company's careers URL (<code>boards.greenhouse.io/stripe</code> → <code>stripe</code>).</li>
+<li>Run. Export to a spreadsheet.</li>
+<li>Pivot by <code>company</code> and <code>department</code> to see where each competitor is growing.</li>
+</ol>
+<h2>Turn it into a weekly report</h2>
+<p>Schedule the run weekly in Apify and compare with last week's dataset: new departments, new locations and roles that disappeared are the interesting signals. An AI agent can do the comparison for you via the API:</p>
+<pre><code>curl -X POST &quot;https://api.apify.com/v2/acts/datasetworks~company-jobs/run-sync-get-dataset-items?token=YOUR_TOKEN&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;companies&quot;: [&quot;stripe&quot;, &quot;ashby:ramp&quot;], &quot;maxJobsPerCompany&quot;: 200}'
+</code></pre>
+<h2>Other uses</h2>
+<ul>
+<li>Recruiters and job boards building a feed of roles at target companies</li>
+<li>Investors watching hiring velocity at portfolio or competitor companies</li>
+<li>Sales teams spotting buying signals ("hiring 5 data engineers" → they may need data tools)</li>
+</ul>
+<p>Cost: $1.50 per 1,000 jobs. Only company job data is collected, no personal data.</p><p><a class="btn" href="https://apify.com/datasetworks/company-jobs" rel="sponsored">Try the tool on Apify</a></p></article></main>
+<footer><p>Dataset Works builds data tools that do one job well, from public business data only. Tools run on the <a href="https://apify.com" rel="sponsored">Apify</a> platform, which handles accounts and billing. Questions or bugs: open an issue on the tool's Apify page.</p><p>© 2026 Dataset Works</p></footer>
+</body></html>

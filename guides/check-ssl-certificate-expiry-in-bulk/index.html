@@ -1,0 +1,32 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to check SSL certificate expiry for hundreds of domains at once | Dataset Works</title><meta name="description" content="Find every SSL certificate that expires in the next 30 days across a list of domains, with issuer and days left, as a spreadsheet or JSON."><link rel="canonical" href="https://datasetworks.dev/guides/check-ssl-certificate-expiry-in-bulk/">
+<meta property="og:title" content="How to check SSL certificate expiry for hundreds of domains at once | Dataset Works"><meta property="og:description" content="Find every SSL certificate that expires in the next 30 days across a list of domains, with issuer and days left, as a spreadsheet or JSON."><meta property="og:site_name" content="Dataset Works">
+<meta property="og:image" content="https://datasetworks.dev/logo-icon-512.png"><link rel="icon" href="/logo-icon.svg"><link rel="stylesheet" href="/style.css"></head><body>
+<header><img src="/logo-icon.svg" alt=""><a class="brand" href="/">Dataset Works</a></header>
+<main><article><h1>How to check SSL certificate expiry for hundreds of domains at once</h1><p>An expired certificate takes a site offline for most visitors, and it usually happens to the domain nobody was watching: an old marketing site, a client's shop, a regional domain. Checking them one by one in a browser doesn't scale past a handful.</p>
+<h2>What you get</h2>
+<p>For each domain, the <a href="/tools/domain-dns-ssl-lookup/">Bulk DNS, SSL Certificate &amp; Email Security Lookup</a> makes one normal TLS connection and returns:</p>
+<ul>
+<li><code>sslValidTo</code> and <code>sslDaysLeft</code>: the expiry date and how many days remain</li>
+<li><code>sslIssuer</code>: who issued it (Let's Encrypt, DigiCert, Google Trust Services...)</li>
+<li><code>sslValid</code> and <code>sslError</code>: whether browsers would trust it, and why not</li>
+<li><code>sslNames</code>: every hostname the certificate covers</li>
+<li><code>tlsVersion</code>: e.g. TLSv1.3</li>
+</ul>
+<h2>Steps</h2>
+<ol>
+<li>Open the tool on Apify and paste your domains into <strong>Domains</strong>, one per line. Full URLs work too.</li>
+<li>Run it. A few hundred domains take about a minute.</li>
+<li>Export as CSV or Excel and sort by <code>sslDaysLeft</code>. Anything under 30 needs attention; anything with <code>sslValid: false</code> is already a problem.</li>
+</ol>
+<h2>Run it every day automatically</h2>
+<p>In Apify, add a <strong>schedule</strong> to the saved task (for example daily at 07:00). Connect the run to an email, Slack or webhook integration, or pull the results from the API into your own monitoring.</p>
+<pre><code>curl -X POST &quot;https://api.apify.com/v2/acts/datasetworks~domain-dns-ssl-lookup/run-sync-get-dataset-items?token=YOUR_TOKEN&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;domains&quot;: [&quot;example.com&quot;, &quot;example.org&quot;], &quot;checkDns&quot;: false}'
+</code></pre>
+<p>Setting <code>checkDns</code> to <code>false</code> skips the DNS part when you only care about certificates.</p>
+<h2>Cost</h2>
+<p>$1.50 per 1,000 domains. Checking 200 domains every day costs about $9 a month.</p><p><a class="btn" href="https://apify.com/datasetworks/domain-dns-ssl-lookup" rel="sponsored">Try the tool on Apify</a></p></article></main>
+<footer><p>Dataset Works builds data tools that do one job well, from public business data only. Tools run on the <a href="https://apify.com" rel="sponsored">Apify</a> platform, which handles accounts and billing. Questions or bugs: open an issue on the tool's Apify page.</p><p>© 2026 Dataset Works</p></footer>
+</body></html>

@@ -52,8 +52,20 @@ def page(title, desc, body, path):
 <footer><p>Dataset Works builds data tools that do one job well, from public business data only. Tools run on the <a href="https://apify.com{AFFILIATE}" rel="sponsored">Apify</a> platform, which handles accounts and billing. Questions or bugs: open an issue on the tool's Apify page.</p><p>© {datetime.date.today().year} Dataset Works</p></footer>
 </body></html>"""
 
+def load_guides():
+    gs = []
+    gdir = os.path.join(ROOT, "guides")
+    for fn in sorted(os.listdir(gdir)) if os.path.isdir(gdir) else []:
+        if not fn.endswith(".md"): continue
+        raw = open(os.path.join(gdir, fn)).read()
+        m = re.match(r"---\n(.*?)\n---\n(.*)", raw, re.S)
+        meta = dict(l.split(": ", 1) for l in m.group(1).splitlines() if ": " in l)
+        gs.append({"slug": fn[:-3], "body": m.group(2), **meta})
+    return gs
+
 def main():
     tools = json.load(open(os.path.join(DW, "tools.json")))
+    guides = load_guides()
     if os.path.exists(OUT): shutil.rmtree(OUT)
     os.makedirs(OUT)
     for f in ("logo-icon.svg", "logo-icon-512.png"): shutil.copy(os.path.join(DW, f), OUT)
@@ -81,17 +93,30 @@ def main():
         body = f"""<section class="hero"><h1>{html.escape(a['title'])}</h1><p>{html.escape(a.get('description',''))}</p>
 <p><a class="btn" href="{store}" rel="sponsored">Try it on Apify</a> <span class="price">{html.escape(price)}</span></p></section>
 <article>{body_md}</article><p><a class="btn" href="{store}" rel="sponsored">Open {html.escape(a['title'])} on Apify</a></p>"""
+        rel = [g for g in guides if g.get("tool") == a["name"]]
+        if rel: body += "<h2>Guides</h2><ul>" + "".join(f'<li><a href="/guides/{g["slug"]}/">{html.escape(g["title"])}</a></li>' for g in rel) + "</ul>"
         os.makedirs(OUT + path, exist_ok=True)
         open(OUT + path + "index.html", "w").write(page(f"{a['title']} | Dataset Works", a.get("description", "")[:160], body, path))
         urls.append(path)
         cards.append(f"""<div class="card"><h2><a href="{path}">{html.escape(a['title'])}</a></h2><p>{html.escape(a.get('description',''))}</p>
 <div class="price">{html.escape(price)}</div><p style="margin-top:12px"><a class="btn" href="{path}">Details</a></p></div>""")
+    stores = {t["name"]: f"https://apify.com/datasetworks/{t['name']}{AFFILIATE}" for t in tools}
+    glinks = []
+    for g in guides:
+        path = f"/guides/{g['slug']}/"
+        cta = f'<p><a class="btn" href="{stores.get(g.get("tool"), "/")}" rel="sponsored">Try the tool on Apify</a></p>' if g.get("tool") in stores else ""
+        body = f"""<article><h1>{html.escape(g['title'])}</h1>{markdown.markdown(g['body'], extensions=["tables", "fenced_code"])}{cta}</article>"""
+        os.makedirs(OUT + path, exist_ok=True)
+        open(OUT + path + "index.html", "w").write(page(f"{g['title']} | Dataset Works", g.get("description", "")[:160], body, path))
+        urls.append(path)
+        glinks.append(f'<li><a href="{path}">{html.escape(g["title"])}</a></li>')
     home = f"""<section class="hero"><h1>Clean data tools for spreadsheets, apps and AI agents</h1>
-<p>Each tool does one job well: jobs from company career boards, website tech stacks, news trends, product catalogs, clean web text. Same fields every run, pay only for results, callable from the Apify API or MCP.</p></section>
+<p>Each tool does one job well: jobs from company career boards, website tech stacks, DNS and SSL checks, news trends, product catalogs, clean web text. Same fields every run, pay only for results, callable from the Apify API or MCP.</p></section>
 <div class="points"><div><b>Pay per result</b><br>No subscription. Failed lookups are free.</div><div><b>Built for AI agents</b><br>Fixed output fields, works through API and MCP.</div>
 <div><b>Maintained daily</b><br>Automated checks every day; broken tools are fixed fast.</div><div><b>Responsible</b><br>Public business data only. No personal data, no bypassing logins or blocks.</div></div>
-<div class="grid">{''.join(cards)}</div>"""
-    open(os.path.join(OUT, "index.html"), "w").write(page("Dataset Works: clean data tools for AI agents and spreadsheets", "Pay-per-result data tools for jobs, website tech stacks, news trends, Shopify products and web-to-markdown. Public business data, built for AI agents.", home, "/"))
+<div class="grid">{''.join(cards)}</div>
+<h2>Guides</h2><ul>{''.join(glinks)}</ul>"""
+    open(os.path.join(OUT, "index.html"), "w").write(page("Dataset Works: clean data tools for AI agents and spreadsheets", "Pay-per-result data tools for jobs, website tech stacks, DNS and SSL checks, news trends, Shopify products and web-to-markdown. Public business data, built for AI agents.", home, "/"))
     today = datetime.date.today().isoformat()
     open(os.path.join(OUT, "sitemap.xml"), "w").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + "".join(f"<url><loc>{SITE}{u}</loc><lastmod>{today}</lastmod></url>" for u in urls) + "</urlset>\n")
     open(os.path.join(OUT, "robots.txt"), "w").write(f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n")
