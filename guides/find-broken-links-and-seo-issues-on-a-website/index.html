@@ -1,0 +1,35 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to find broken links and SEO issues across a whole website | Dataset Works</title><meta name="description" content="Crawl a site and get every broken link, missing or duplicate title, meta description, H1, canonical and sitemap gap as one spreadsheet, page by page."><link rel="canonical" href="https://datasetworks.dev/guides/find-broken-links-and-seo-issues-on-a-website/">
+<meta property="og:title" content="How to find broken links and SEO issues across a whole website | Dataset Works"><meta property="og:description" content="Crawl a site and get every broken link, missing or duplicate title, meta description, H1, canonical and sitemap gap as one spreadsheet, page by page."><meta property="og:site_name" content="Dataset Works">
+<meta property="og:image" content="https://datasetworks.dev/logo-icon-512.png"><link rel="icon" href="/logo-icon.svg"><link rel="stylesheet" href="/style.css"></head><body>
+<header><img src="/logo-icon.svg" alt=""><a class="brand" href="/">Dataset Works</a></header>
+<main><article><h1>How to find broken links and SEO issues across a whole website</h1><p>Most SEO problems are boring and fixable: a page with no meta description, two pages with the same title, a link to a product that no longer exists, a page that never made it into the sitemap. The hard part is finding them across hundreds of pages without clicking through each one.</p>
+<h2>What you get</h2>
+<p>The <a href="/tools/website-seo-audit/">Website SEO Audit</a> reads the site's robots.txt and XML sitemap, crawls up to the number of pages you set, and returns one row per page with:</p>
+<ul>
+<li><code>title</code>, <code>titleLength</code>, <code>metaDescription</code>, <code>metaDescriptionLength</code>, <code>h1</code>, <code>h1Count</code></li>
+<li><code>canonical</code>, <code>metaRobots</code> and <code>xRobotsTag</code> (so you can spot accidental <code>noindex</code>)</li>
+<li><code>brokenLinks</code>: every link on the page that returned 404, 410, a server error or no answer, marked internal or external</li>
+<li><code>inSitemap</code>, <code>redirected</code>, <code>responseMs</code>, <code>wordCount</code>, <code>imagesMissingAlt</code>, <code>structuredDataTypes</code></li>
+<li><code>issues</code>: a list of fixed codes such as <code>duplicate_title</code>, <code>missing_meta_description</code>, <code>multiple_h1</code>, <code>not_in_sitemap</code> and <code>broken_links</code></li>
+</ul>
+<p>A per-site summary with issue counts is saved as <code>SUMMARY</code> in the run's key-value store.</p>
+<h2>Steps</h2>
+<ol>
+<li>Open the tool on Apify and add your site, e.g. <code>example.com</code>.</li>
+<li>Set <strong>Max pages per site</strong>. Start with 50 to see what comes back; raise it for a full audit.</li>
+<li>Run it, export as CSV or Excel, and sort by <code>issueCount</code> or <code>brokenLinkCount</code>. Fix the pages at the top first.</li>
+</ol>
+<h2>Run it after every release</h2>
+<p>Save the input as an Apify task and add a weekly schedule, or call it from your deploy pipeline:</p>
+<pre><code>curl -X POST &quot;https://api.apify.com/v2/acts/datasetworks~website-seo-audit/run-sync-get-dataset-items?token=YOUR_TOKEN&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;websites&quot;: [&quot;example.com&quot;], &quot;maxPagesPerSite&quot;: 100}'
+</code></pre>
+<p>Set <code>checkExternalLinks</code> to <code>false</code> if you only care about links inside your own site.</p>
+<h2>Why some links show as "unverified"</h2>
+<p>Some sites refuse automated checks and answer 403 or 429 even when the page exists (review sites and social networks often do). The tool counts these as <code>unverifiedLinkCount</code> instead of calling them broken, so the broken list stays worth acting on.</p>
+<h2>Cost</h2>
+<p>$2 per 1,000 pages audited. Link checks and the sitemap read are free. A weekly 200-page audit costs about $1.60 a month.</p><p><a class="btn" href="https://apify.com/datasetworks/website-seo-audit" rel="sponsored">Try the tool on Apify</a></p></article></main>
+<footer><p>Dataset Works builds data tools that do one job well, from public business data only. Tools run on the <a href="https://apify.com" rel="sponsored">Apify</a> platform, which handles accounts and billing. Questions or bugs: open an issue on the tool's Apify page.</p><p>© 2026 Dataset Works</p></footer>
+</body></html>

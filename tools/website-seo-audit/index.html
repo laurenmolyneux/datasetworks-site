@@ -1,0 +1,77 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Website SEO Audit: Broken Links, Meta Tags &amp; Sitemap Checker | Dataset Works</title><meta name="description" content="Crawl any website and get a page-by-page SEO audit: broken links, titles, meta descriptions, H1s, canonicals, noindex, redirects, sitemap coverage, alt text, th"><link rel="canonical" href="https://datasetworks.dev/tools/website-seo-audit/">
+<meta property="og:title" content="Website SEO Audit: Broken Links, Meta Tags &amp; Sitemap Checker | Dataset Works"><meta property="og:description" content="Crawl any website and get a page-by-page SEO audit: broken links, titles, meta descriptions, H1s, canonicals, noindex, redirects, sitemap coverage, alt text, th"><meta property="og:site_name" content="Dataset Works">
+<meta property="og:image" content="https://datasetworks.dev/logo-icon-512.png"><link rel="icon" href="/logo-icon.svg"><link rel="stylesheet" href="/style.css"></head><body>
+<header><img src="/logo-icon.svg" alt=""><a class="brand" href="/">Dataset Works</a></header>
+<main><section class="hero"><h1>Website SEO Audit: Broken Links, Meta Tags &amp; Sitemap Checker</h1><p>Crawl any website and get a page-by-page SEO audit: broken links, titles, meta descriptions, H1s, canonicals, noindex, redirects, sitemap coverage, alt text, thin content and speed. Respects robots.txt.</p>
+<p><a class="btn" href="https://apify.com/datasetworks/website-seo-audit" rel="sponsored">Try it on Apify</a> <span class="price">$2.00 per 1,000 page auditeds</span></p></section>
+<article><p><strong>Crawl any website and get a page-by-page SEO audit in one clean table: broken links, titles, meta descriptions, H1s, canonicals, noindex, redirects, sitemap coverage, missing alt text, thin content and slow pages.</strong></p>
+<p>Give it one or more websites. It reads the site's robots.txt and XML sitemap, crawls up to your page limit, checks every link it finds, and returns one row per page with the measurements and a plain list of issues.</p>
+<h2>Sample output</h2>
+<table>
+<thead>
+<tr>
+<th>url</th>
+<th>statusCode</th>
+<th>titleLength</th>
+<th>h1Count</th>
+<th>brokenLinkCount</th>
+<th>issues</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>https://crawler-test.com/</td>
+<td>200</td>
+<td>17</td>
+<td>1</td>
+<td>29</td>
+<td>meta_description_too_short, missing_canonical, missing_lang, missing_viewport, broken_links</td>
+</tr>
+<tr>
+<td>https://books.toscrape.com/</td>
+<td>200</td>
+<td>40</td>
+<td>1</td>
+<td>0</td>
+<td>duplicate_title, missing_meta_description, missing_canonical</td>
+</tr>
+<tr>
+<td>https://apify.com/alternatives</td>
+<td>200</td>
+<td>20</td>
+<td>2</td>
+<td>0</td>
+<td>multiple_h1</td>
+</tr>
+</tbody>
+</table>
+<p>Each row also has <code>finalUrl</code>, <code>redirected</code>, <code>responseMs</code>, <code>contentType</code>, <code>title</code>, <code>metaDescription</code>, <code>h1</code>, <code>h2Count</code>, <code>canonical</code>, <code>metaRobots</code>, <code>xRobotsTag</code>, <code>lang</code>, <code>hasViewport</code>, <code>ogTitle</code>, <code>ogImage</code>, <code>hreflang</code>, <code>structuredDataTypes</code> (JSON-LD types), <code>imagesTotal</code>, <code>imagesMissingAlt</code>, <code>wordCount</code>, <code>internalLinks</code>, <code>externalLinks</code>, <code>nofollowLinks</code>, <code>brokenLinks</code> (URL, status, internal or external), <code>unverifiedLinkCount</code>, <code>inSitemap</code>, <code>depth</code> and <code>auditedAt</code>.</p>
+<p>A per-site summary (pages audited, sitemap URL count, links checked, broken links, issue counts) is saved in the run's key-value store as <code>SUMMARY</code>.</p>
+<h3>Issues it flags</h3>
+<p><code>missing_title</code>, <code>title_too_long</code> (over 60 characters), <code>title_too_short</code>, <code>duplicate_title</code>, <code>missing_meta_description</code>, <code>meta_description_too_long</code> (over 160), <code>meta_description_too_short</code>, <code>duplicate_meta_description</code>, <code>missing_h1</code>, <code>multiple_h1</code>, <code>missing_canonical</code>, <code>canonical_points_elsewhere</code>, <code>noindex</code>, <code>missing_lang</code>, <code>missing_viewport</code>, <code>images_missing_alt</code>, <code>thin_content</code> (under 200 words), <code>slow_response</code> (over 3 s), <code>not_https</code>, <code>not_in_sitemap</code>, <code>redirects</code>, <code>broken_links</code>, <code>http_404</code> and other error codes.</p>
+<h2>How to use</h2>
+<ol>
+<li>Add websites, e.g. <code>example.com</code> or <code>https://example.com/blog/</code>.</li>
+<li>Set <strong>Max pages per site</strong> (default 25).</li>
+<li>Run, then export as CSV, Excel or JSON, or call it via the API. Sort by <code>issueCount</code> to see the worst pages first.</li>
+</ol>
+<h2>Use cases</h2>
+<ul>
+<li><strong>SEO audits</strong> for clients or your own sites, on a schedule.</li>
+<li><strong>Broken link monitoring:</strong> find 404s and dead outbound links before users do.</li>
+<li><strong>Site migrations:</strong> check redirects, canonicals and sitemap coverage after a launch.</li>
+<li><strong>Content QA:</strong> find duplicate titles, thin pages and images without alt text.</li>
+<li><strong>AI agents:</strong> let an agent audit a site and propose fixes from structured data.</li>
+</ul>
+<h2>Pricing</h2>
+<p><strong>$2 per 1,000 pages audited</strong> ($0.002 per page). Link checks, the sitemap read and the site summary are free. Platform usage is included.</p>
+<h2>For AI agents</h2>
+<p>Call it via the Apify API or MCP server with <code>{"websites": ["example.com"], "maxPagesPerSite": 20}</code>. Every row has the same fields, and <code>issues</code> is a list of fixed codes an agent can act on directly.</p>
+<h2>Data and responsibility</h2>
+<p>The tool identifies itself as DatasetWorksBot, follows robots.txt (including crawl-delay), waits at least half a second between pages on the same site, and only reads public pages. It never logs in or bypasses blocks. Links that another site refuses to let a bot check (403, 429 and similar) are counted as <code>unverifiedLinkCount</code>, not reported as broken. It records page-level SEO facts only: no personal data, emails or phone numbers. Pages are read as HTML without running JavaScript, so content added only by scripts is not seen.</p>
+<h2>Support</h2>
+<p>Found a false positive or want another check added? Open an issue on this page and we'll reply within one working day.</p>
+<p>Built and maintained by <strong>Dataset Works</strong>.</p></article><p><a class="btn" href="https://apify.com/datasetworks/website-seo-audit" rel="sponsored">Open Website SEO Audit: Broken Links, Meta Tags &amp; Sitemap Checker on Apify</a></p><h2>Guides</h2><ul><li><a href="/guides/find-broken-links-and-seo-issues-on-a-website/">How to find broken links and SEO issues across a whole website</a></li></ul></main>
+<footer><p>Dataset Works builds data tools that do one job well, from public business data only. Tools run on the <a href="https://apify.com" rel="sponsored">Apify</a> platform, which handles accounts and billing. Questions or bugs: open an issue on the tool's Apify page.</p><p>© 2026 Dataset Works</p></footer>
+</body></html>

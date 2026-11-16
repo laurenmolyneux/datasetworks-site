@@ -67,7 +67,7 @@
 <li>A news feed for AI agents and dashboards.</li>
 </ul>
 <h2>Pricing</h2>
-<p><strong>$0.01 per search term</strong> plus <strong>$1 per 1,000 articles</strong> returned. Example: 5 terms with 50 articles each costs $0.30. Platform usage is included.</p>
+<p><strong>$0.01 per search term</strong> (not charged if the news source is unreachable for that term) plus <strong>$1 per 1,000 articles</strong> returned. Example: 5 terms with 50 articles each costs $0.30. Platform usage is included.</p>
 <p>Note: the worldwide news source limits how fast requests can be made, so runs take about a minute per search term. This is deliberate: we stay within the source's published limits.</p>
 <h2>For AI agents</h2>
 <p>Call it through the Apify API or the Apify MCP server with <code>{"queries": ["Stripe"], "timespan": "7d", "maxArticlesPerQuery": 20}</code>. Every row has the same fields, and the SUMMARY record gives a one-number trend per term.</p>
