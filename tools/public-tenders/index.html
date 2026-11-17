@@ -1,0 +1,78 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EU &amp; UK Public Tenders (TED, Find a Tender, Contracts Finder) | Dataset Works</title><meta name="description" content="Search new public tenders and contract awards from TED (all EU countries), UK Find a Tender and UK Contracts Finder in one clean table. Filter by keyword, CPV c"><link rel="canonical" href="https://datasetworks.dev/tools/public-tenders/">
+<meta property="og:title" content="EU &amp; UK Public Tenders (TED, Find a Tender, Contracts Finder) | Dataset Works"><meta property="og:description" content="Search new public tenders and contract awards from TED (all EU countries), UK Find a Tender and UK Contracts Finder in one clean table. Filter by keyword, CPV c"><meta property="og:site_name" content="Dataset Works">
+<meta property="og:image" content="https://datasetworks.dev/logo-icon-512.png"><link rel="icon" href="/logo-icon.svg"><link rel="stylesheet" href="/style.css"></head><body>
+<header><img src="/logo-icon.svg" alt=""><a class="brand" href="/">Dataset Works</a></header>
+<main><section class="hero"><h1>EU &amp; UK Public Tenders (TED, Find a Tender, Contracts Finder)</h1><p>Search new public tenders and contract awards from TED (all EU countries), UK Find a Tender and UK Contracts Finder in one clean table. Filter by keyword, CPV code, country, value and date. Built for bid teams, sales and AI agents.</p>
+<p><a class="btn" href="https://apify.com/datasetworks/public-tenders" rel="sponsored">Try it on Apify</a> <span class="price">$2.00 per 1,000 tender notices</span></p></section>
+<article><p><strong>Find new government tenders and contract awards across the EU and UK, from three official portals, in one clean table.</strong></p>
+<p>Search TED (Tenders Electronic Daily: every EU country plus EEA and partner countries), UK Find a Tender and UK Contracts Finder at once. Filter by keyword, CPV code, buyer country, minimum value and date. Every notice comes back with the same fields, whatever the portal, so you can drop it straight into a spreadsheet, CRM, alert or AI agent.</p>
+<h2>Sample output</h2>
+<table>
+<thead>
+<tr>
+<th>source</th>
+<th>noticeType</th>
+<th>title</th>
+<th>buyerName</th>
+<th>buyerCountry</th>
+<th>valueAmount</th>
+<th>deadline</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TED (EU)</td>
+<td>tender</td>
+<td>Beschaffung einer neuen XDR-Lösung</td>
+<td>Heinrich-Heine-Universität Düsseldorf</td>
+<td>DE</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>UK Find a Tender</td>
+<td>tender</td>
+<td>Promote Shetland Service 2027–2032</td>
+<td>Shetland Islands Council</td>
+<td>GB</td>
+<td>1830000 GBP</td>
+<td>2027-01-18</td>
+</tr>
+<tr>
+<td>UK Contracts Finder</td>
+<td>award</td>
+<td>Vauxhall Rd Active Travel Scheme Works</td>
+<td>Liverpool City Council</td>
+<td>GB</td>
+<td>12078785 GBP</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Each row also has <code>noticeId</code>, <code>titleEnglish</code> (TED's English summary line), <code>description</code>, <code>buyerCity</code>, <code>cpvCodes</code>, <code>mainCpv</code>, <code>contractType</code> (works / supplies / services), <code>procedure</code>, <code>valueCurrency</code>, <code>publishedDate</code>, <code>awardedSuppliers</code> (winning companies, for award notices) and <code>url</code> (the official notice page).</p>
+<h2>How to use</h2>
+<ol>
+<li>Add <strong>Keywords</strong> (e.g. <code>software</code>, <code>cleaning</code>, <code>solar</code>) or leave empty for everything.</li>
+<li>Pick <strong>Notice kind</strong>: open opportunities you can bid on, contract awards (who won), or both.</li>
+<li>Optionally narrow by <strong>Buyer countries</strong> (<code>DE</code>, <code>FR</code>, <code>GB</code>...), <strong>CPV codes</strong> (<code>72</code> = IT services, <code>45</code> = construction) and <strong>Minimum value</strong>.</li>
+<li>Run, then export as CSV, Excel or JSON. Schedule it daily with <strong>Published in the last N days</strong> = 1 for a daily tender alert.</li>
+</ol>
+<h2>Use cases</h2>
+<ul>
+<li><strong>Bid teams and suppliers:</strong> a daily feed of new tenders in your sector and countries.</li>
+<li><strong>Sales and market intelligence:</strong> see which public bodies are buying what, and at what value.</li>
+<li><strong>Competitor tracking:</strong> follow contract awards to see who is winning work in your market.</li>
+<li><strong>AI agents:</strong> give an agent a reliable tool to answer "what public contracts for X opened this week?".</li>
+</ul>
+<h2>Pricing</h2>
+<p><strong>$2 per 1,000 notices</strong> ($0.002 per tender notice returned). Platform usage is included. Use <strong>Max results</strong> to cap spend.</p>
+<h2>For AI agents</h2>
+<p>Call it via the Apify API or MCP server with e.g. <code>{"keywords": ["cybersecurity"], "countries": ["DE", "NL"], "publishedWithinDays": 2}</code>. You get one object per notice with fixed field names; <code>noticeType</code> is <code>tender</code>, <code>planning</code> or <code>award</code>. Dates are <code>YYYY-MM-DD</code>. Results are split fairly between the sources you choose.</p>
+<h2>Data and responsibility</h2>
+<p>All data comes from official open-data APIs: the TED search API of the EU Publications Office (free reuse, including commercial) and the UK Cabinet Office's Find a Tender and Contracts Finder OCDS APIs (Open Government Licence v3.0). The tool does not return personal data: contact names, email addresses and phone numbers in notices are left out, and awarded suppliers are only listed when they are clearly organisations. TED keyword search covers the full notice text; titles are in the notice's original language, with TED's English summary line in <code>titleEnglish</code>.</p>
+<h2>Support</h2>
+<p>Need another country's portal or another field? Open an issue on this page and we'll reply within one working day.</p>
+<p>Built and maintained by <strong>Dataset Works</strong>.</p></article><p><a class="btn" href="https://apify.com/datasetworks/public-tenders" rel="sponsored">Open EU &amp; UK Public Tenders (TED, Find a Tender, Contracts Finder) on Apify</a></p><h2>Guides</h2><ul><li><a href="/guides/get-a-daily-feed-of-new-eu-and-uk-tenders/">How to get a daily feed of new EU and UK public tenders</a></li></ul></main>
+<footer><p>Dataset Works builds data tools that do one job well, from public business data only. Tools run on the <a href="https://apify.com" rel="sponsored">Apify</a> platform, which handles accounts and billing. Questions or bugs: open an issue on the tool's Apify page.</p><p>© 2026 Dataset Works</p></footer>
+</body></html>

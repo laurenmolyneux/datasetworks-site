@@ -1,0 +1,38 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to get a daily feed of new EU and UK public tenders | Dataset Works</title><meta name="description" content="Pull new government tenders and contract awards from TED, UK Find a Tender and Contracts Finder into one spreadsheet or alert, filtered by keyword, CPV code, co"><link rel="canonical" href="https://datasetworks.dev/guides/get-a-daily-feed-of-new-eu-and-uk-tenders/">
+<meta property="og:title" content="How to get a daily feed of new EU and UK public tenders | Dataset Works"><meta property="og:description" content="Pull new government tenders and contract awards from TED, UK Find a Tender and Contracts Finder into one spreadsheet or alert, filtered by keyword, CPV code, co"><meta property="og:site_name" content="Dataset Works">
+<meta property="og:image" content="https://datasetworks.dev/logo-icon-512.png"><link rel="icon" href="/logo-icon.svg"><link rel="stylesheet" href="/style.css"></head><body>
+<header><img src="/logo-icon.svg" alt=""><a class="brand" href="/">Dataset Works</a></header>
+<main><article><h1>How to get a daily feed of new EU and UK public tenders</h1><p>Public bodies in Europe publish billions in contracts every week, but they publish them on different portals: TED for the EU, Find a Tender for higher-value UK work and Contracts Finder for smaller UK contracts. Checking all three by hand every morning is slow, and their search pages all work differently.</p>
+<h2>What you get</h2>
+<p>The <a href="/tools/public-tenders/">EU &amp; UK Public Tenders</a> tool searches all three official open-data APIs and returns one row per notice with the same fields every time:</p>
+<ul>
+<li><code>title</code>, <code>titleEnglish</code> and <code>description</code>: what is being bought</li>
+<li><code>buyerName</code>, <code>buyerCountry</code>, <code>buyerCity</code>: the public body buying it</li>
+<li><code>cpvCodes</code> and <code>contractType</code>: the official category (works, supplies, services)</li>
+<li><code>valueAmount</code> and <code>valueCurrency</code>: estimated or awarded value, when published</li>
+<li><code>publishedDate</code> and <code>deadline</code>: when it opened and when bids are due</li>
+<li><code>awardedSuppliers</code>: the winning companies, for award notices</li>
+<li><code>url</code>: the official notice page to read the full documents</li>
+</ul>
+<h2>Steps</h2>
+<ol>
+<li>Open the tool on Apify and add a few <strong>Keywords</strong> for your sector, such as <code>cybersecurity</code> or <code>facilities management</code>.</li>
+<li>Choose <strong>Open opportunities</strong> to see tenders you can bid on, or <strong>Contract awards</strong> to see who won.</li>
+<li>Narrow it down with <strong>Buyer countries</strong> (for example <code>DE</code>, <code>NL</code>, <code>GB</code>), <strong>CPV codes</strong> (<code>72</code> is IT services, <code>45</code> is construction) and a <strong>Minimum value</strong>.</li>
+<li>Run it and export to CSV, Excel or JSON.</li>
+</ol>
+<h2>Turn it into a daily tender alert</h2>
+<p>Save the input as a task, set <strong>Published in the last N days</strong> to 1 and add a daily schedule. Connect the run to email, Slack or a webhook, or pull the results from the API:</p>
+<pre><code>curl -X POST &quot;https://api.apify.com/v2/acts/datasetworks~public-tenders/run-sync-get-dataset-items?token=YOUR_TOKEN&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;keywords&quot;: [&quot;software&quot;], &quot;countries&quot;: [&quot;DE&quot;, &quot;FR&quot;, &quot;GB&quot;], &quot;publishedWithinDays&quot;: 1}'
+</code></pre>
+<h2>Track competitors with contract awards</h2>
+<p>Set <strong>Notice kind</strong> to <strong>Contract awards</strong> and use your market's CPV codes. The <code>awardedSuppliers</code> column shows which companies are winning, from which buyers, and at what value.</p>
+<h2>Cost</h2>
+<p>$2 per 1,000 notices. A daily alert for one sector usually returns a few dozen notices, so it costs cents a day. Use <strong>Max results</strong> to set a hard cap.</p>
+<h2>Where the data comes from</h2>
+<p>Every notice comes from an official open-data API: the EU Publications Office's TED search API and the UK Cabinet Office's OCDS APIs (Open Government Licence). Contact names, emails and phone numbers are left out.</p><p><a class="btn" href="https://apify.com/datasetworks/public-tenders" rel="sponsored">Try the tool on Apify</a></p></article></main>
+<footer><p>Dataset Works builds data tools that do one job well, from public business data only. Tools run on the <a href="https://apify.com" rel="sponsored">Apify</a> platform, which handles accounts and billing. Questions or bugs: open an issue on the tool's Apify page.</p><p>© 2026 Dataset Works</p></footer>
+</body></html>
