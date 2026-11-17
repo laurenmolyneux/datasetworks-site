@@ -1,0 +1,83 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to use Dataset Works tools in Claude, ChatGPT and Cursor (MCP) | Dataset Works</title><meta name="description" content="Connect all eight Dataset Works data tools to your AI assistant through the Model Context Protocol, so it can look up tenders, jobs, websites and domains for yo"><link rel="canonical" href="https://datasetworks.dev/guides/use-data-tools-in-claude-chatgpt-and-cursor-with-mcp/">
+<meta property="og:title" content="How to use Dataset Works tools in Claude, ChatGPT and Cursor (MCP) | Dataset Works"><meta property="og:description" content="Connect all eight Dataset Works data tools to your AI assistant through the Model Context Protocol, so it can look up tenders, jobs, websites and domains for yo"><meta property="og:site_name" content="Dataset Works">
+<meta property="og:image" content="https://datasetworks.dev/logo-icon-512.png"><link rel="icon" href="/logo-icon.svg"><link rel="stylesheet" href="/style.css"></head><body>
+<header><img src="/logo-icon.svg" alt=""><a class="brand" href="/">Dataset Works</a></header>
+<main><article><h1>How to use Dataset Works tools in Claude, ChatGPT and Cursor (MCP)</h1><p>Every Dataset Works tool can be called by an AI assistant through the <strong>Model Context Protocol (MCP)</strong>. You connect once, and then you can ask in plain English: "find open UK tenders for school catering this week", "what is Ramp hiring for?", or "check SPF and DMARC for these 30 domains". The assistant picks the right tool, runs it and reads the results.</p>
+<p>The tools run on Apify, which hosts the MCP server and handles billing, so you pay per result and nothing else.</p>
+<h2>The MCP server address</h2>
+<p>Use this URL to get all eight tools:</p>
+<pre><code>https://mcp.apify.com/?tools=datasetworks/public-tenders,datasetworks/company-jobs,datasetworks/web-to-text,datasetworks/website-tech-stack,datasetworks/domain-dns-ssl-lookup,datasetworks/website-seo-audit,datasetworks/shopify-store-products,datasetworks/news-trend-monitor
+</code></pre>
+<p>Or load just one, for example <code>https://mcp.apify.com/?tools=datasetworks/public-tenders</code>.</p>
+<h2>Claude (claude.ai and Claude Desktop)</h2>
+<ol>
+<li>Open <strong>Settings</strong>, then <strong>Connectors</strong>, then <strong>Add custom connector</strong>.</li>
+<li>Paste the URL above and give it a name, such as "Dataset Works".</li>
+<li>Sign in to Apify when asked (a free account works).</li>
+</ol>
+<h2>Cursor, VS Code and other MCP clients</h2>
+<p>Add this to your MCP configuration (for Cursor, <code>~/.cursor/mcp.json</code>), using an Apify API token from <strong>Apify Console &gt; Settings &gt; API &amp; Integrations</strong>:</p>
+<pre><code class="language-json">{
+  &quot;mcpServers&quot;: {
+    &quot;dataset-works&quot;: {
+      &quot;url&quot;: &quot;https://mcp.apify.com/?tools=datasetworks/public-tenders,datasetworks/company-jobs,datasetworks/web-to-text,datasetworks/website-tech-stack,datasetworks/domain-dns-ssl-lookup,datasetworks/website-seo-audit,datasetworks/shopify-store-products,datasetworks/news-trend-monitor&quot;,
+      &quot;headers&quot;: { &quot;Authorization&quot;: &quot;Bearer YOUR_APIFY_TOKEN&quot; }
+    }
+  }
+}
+</code></pre>
+<p>Clients that only support local servers can use <code>npx mcp-remote</code> with the same URL and header.</p>
+<h2>ChatGPT</h2>
+<p>ChatGPT supports remote MCP servers as connectors in developer mode. Add a new connector with the URL above and sign in to Apify.</p>
+<h2>What each tool answers</h2>
+<table>
+<thead>
+<tr>
+<th>Ask about</th>
+<th>Tool</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>New EU and UK public tenders and contract awards</td>
+<td><a href="/tools/public-tenders/">public-tenders</a></td>
+</tr>
+<tr>
+<td>Open jobs at a list of companies</td>
+<td><a href="/tools/company-jobs/">company-jobs</a></td>
+</tr>
+<tr>
+<td>Clean Markdown text of any web page</td>
+<td><a href="/tools/web-to-text/">web-to-text</a></td>
+</tr>
+<tr>
+<td>A website's tech stack and company profile</td>
+<td><a href="/tools/website-tech-stack/">website-tech-stack</a></td>
+</tr>
+<tr>
+<td>DNS, SSL expiry, SPF and DMARC for domains</td>
+<td><a href="/tools/domain-dns-ssl-lookup/">domain-dns-ssl-lookup</a></td>
+</tr>
+<tr>
+<td>SEO issues and broken links on a site</td>
+<td><a href="/tools/website-seo-audit/">website-seo-audit</a></td>
+</tr>
+<tr>
+<td>Products and prices from Shopify stores</td>
+<td><a href="/tools/shopify-store-products/">shopify-store-products</a></td>
+</tr>
+<tr>
+<td>News mentions and trends for a topic</td>
+<td><a href="/tools/news-trend-monitor/">news-trend-monitor</a></td>
+</tr>
+</tbody>
+</table>
+<h2>Tips for good results</h2>
+<ul>
+<li>Ask for small result sets first ("the 10 newest"), then widen. Each tool has a max results setting the assistant can use.</li>
+<li>Every tool returns the same field names on every run, so you can ask the assistant to save results as a table or compare this week with last week.</li>
+<li>Failed lookups are free, and you can see every run and its cost in your Apify account.</li>
+</ul></article></main>
+<footer><p>Dataset Works builds data tools that do one job well, from public business data only. Tools run on the <a href="https://apify.com" rel="sponsored">Apify</a> platform, which handles accounts and billing. Questions or bugs: open an issue on the tool's Apify page.</p><p>© 2026 Dataset Works</p></footer>
+</body></html>

@@ -1,0 +1,34 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to find UK government contracts to bid on (and get alerts every morning) | Dataset Works</title><meta name="description" content="A practical way to monitor UK public sector tenders from Find a Tender and Contracts Finder, filter them to your sector and get a daily list of new opportunitie"><link rel="canonical" href="https://datasetworks.dev/guides/find-uk-government-contracts-to-bid-on/">
+<meta property="og:title" content="How to find UK government contracts to bid on (and get alerts every morning) | Dataset Works"><meta property="og:description" content="A practical way to monitor UK public sector tenders from Find a Tender and Contracts Finder, filter them to your sector and get a daily list of new opportunitie"><meta property="og:site_name" content="Dataset Works">
+<meta property="og:image" content="https://datasetworks.dev/logo-icon-512.png"><link rel="icon" href="/logo-icon.svg"><link rel="stylesheet" href="/style.css"></head><body>
+<header><img src="/logo-icon.svg" alt=""><a class="brand" href="/">Dataset Works</a></header>
+<main><article><h1>How to find UK government contracts to bid on (and get alerts every morning)</h1><p>UK public bodies publish their contract opportunities in two places. <strong>Find a Tender</strong> carries higher-value contracts, and <strong>Contracts Finder</strong> carries smaller ones, from about £12,000 for central government and £30,000 for the wider public sector. Councils, NHS trusts, universities, schools and housing associations all post there, and many contracts suit small suppliers.</p>
+<p>The problem is checking both sites every day. Saved searches send long emails, the two sites use different categories, and good opportunities have short deadlines.</p>
+<h2>The quick version</h2>
+<p>Run the <a href="/tools/public-tenders/">EU &amp; UK Public Tenders</a> tool with this input:</p>
+<pre><code class="language-json">{&quot;keywords&quot;: [&quot;cleaning&quot;, &quot;facilities management&quot;], &quot;countries&quot;: [&quot;GB&quot;], &quot;noticeKind&quot;: &quot;open&quot;, &quot;publishedWithinDays&quot;: 1}
+</code></pre>
+<p>You get one row per new opportunity from both UK portals (and nothing from the EU, because only <code>GB</code> is in the countries list), with the buyer, value, deadline and a link to the official notice.</p>
+<h2>Step by step</h2>
+<ol>
+<li><strong>Pick your keywords.</strong> Use the words buyers use in titles, not your own marketing terms: <code>grounds maintenance</code>, <code>catering</code>, <code>software</code>, <code>training</code>, <code>translation</code>, <code>CCTV</code>.</li>
+<li><strong>Or use CPV codes.</strong> Every notice has a CPV code for what is being bought. The first two digits cover a sector: <code>72</code> IT services, <code>79</code> business services, <code>90</code> cleaning and waste, <code>80</code> education and training, <code>45</code> construction, <code>85</code> health and social care.</li>
+<li><strong>Set a minimum value</strong> if small contracts are not worth your time, for example <code>"minValue": 50000</code>.</li>
+<li><strong>Choose the kind of notice.</strong> <code>open</code> gives tenders you can still bid on. <code>awards</code> shows who won past contracts and for how much, which is the best way to price your bid and see who you are up against.</li>
+<li><strong>Run it daily.</strong> Save the input as a task on Apify, set <strong>Published in the last N days</strong> to 1, and schedule it for 7am. Add the email, Slack or Google Sheets integration to get the new list each morning.</li>
+</ol>
+<h2>Example: IT suppliers</h2>
+<pre><code class="language-json">{&quot;cpvCodes&quot;: [&quot;72&quot;, &quot;48&quot;], &quot;countries&quot;: [&quot;GB&quot;], &quot;noticeKind&quot;: &quot;open&quot;, &quot;publishedWithinDays&quot;: 1, &quot;minValue&quot;: 25000}
+</code></pre>
+<p><code>48</code> is software packages, so this catches both software and IT service contracts worth £25k or more.</p>
+<h2>Example: see who wins in your market</h2>
+<pre><code class="language-json">{&quot;keywords&quot;: [&quot;grounds maintenance&quot;], &quot;countries&quot;: [&quot;GB&quot;], &quot;noticeKind&quot;: &quot;awards&quot;, &quot;publishedWithinDays&quot;: 90, &quot;maxResults&quot;: 500}
+</code></pre>
+<p>Sort by <code>valueAmount</code> and look at <code>awardedSuppliers</code> and <code>buyerName</code>. Councils that bought last year will often buy again when the contract ends.</p>
+<h2>What it costs</h2>
+<p>$2 per 1,000 notices. A daily alert for one sector usually returns 5 to 50 notices, so it costs a few cents a day. Set <strong>Max results</strong> as a hard cap.</p>
+<h2>Where the data comes from</h2>
+<p>All notices come from the UK Cabinet Office's official OCDS APIs for Find a Tender and Contracts Finder, published under the Open Government Licence. Contact names, emails and phone numbers are left out of the results; use the <code>url</code> to read the full notice and documents on the official site.</p><p><a class="btn" href="https://apify.com/datasetworks/public-tenders" rel="sponsored">Try the tool on Apify</a></p></article></main>
+<footer><p>Dataset Works builds data tools that do one job well, from public business data only. Tools run on the <a href="https://apify.com" rel="sponsored">Apify</a> platform, which handles accounts and billing. Questions or bugs: open an issue on the tool's Apify page.</p><p>© 2026 Dataset Works</p></footer>
+</body></html>

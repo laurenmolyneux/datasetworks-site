@@ -51,6 +51,27 @@
 </tbody>
 </table>
 <p>Each row also has <code>noticeId</code>, <code>titleEnglish</code> (TED's English summary line), <code>description</code>, <code>buyerCity</code>, <code>cpvCodes</code>, <code>mainCpv</code>, <code>contractType</code> (works / supplies / services), <code>procedure</code>, <code>valueCurrency</code>, <code>publishedDate</code>, <code>awardedSuppliers</code> (winning companies, for award notices) and <code>url</code> (the official notice page).</p>
+<p>One record as JSON:</p>
+<pre><code class="language-json">{
+  &quot;source&quot;: &quot;UK Contracts Finder&quot;,
+  &quot;noticeId&quot;: &quot;d05dc60e-8ba2-4c67-b354-54a886ffe768-921653&quot;,
+  &quot;noticeType&quot;: &quot;tender&quot;,
+  &quot;title&quot;: &quot;CA18145 - Kirklees College - Waste Management Services&quot;,
+  &quot;buyerName&quot;: &quot;Kirklees College&quot;,
+  &quot;buyerCountry&quot;: &quot;GB&quot;,
+  &quot;buyerCity&quot;: &quot;Huddersfield&quot;,
+  &quot;cpvCodes&quot;: [&quot;90513000&quot;],
+  &quot;mainCpv&quot;: &quot;90513000&quot;,
+  &quot;contractType&quot;: &quot;services&quot;,
+  &quot;procedure&quot;: &quot;Open procedure&quot;,
+  &quot;valueAmount&quot;: 195000,
+  &quot;valueCurrency&quot;: &quot;GBP&quot;,
+  &quot;publishedDate&quot;: &quot;2026-11-16&quot;,
+  &quot;deadline&quot;: &quot;2026-12-18&quot;,
+  &quot;awardedSuppliers&quot;: [],
+  &quot;url&quot;: &quot;https://www.contractsfinder.service.gov.uk/Notice/d05dc60e-8ba2-4c67-b354-54a886ffe768&quot;
+}
+</code></pre>
 <h2>How to use</h2>
 <ol>
 <li>Add <strong>Keywords</strong> (e.g. <code>software</code>, <code>cleaning</code>, <code>solar</code>) or leave empty for everything.</li>
@@ -58,6 +79,20 @@
 <li>Optionally narrow by <strong>Buyer countries</strong> (<code>DE</code>, <code>FR</code>, <code>GB</code>...), <strong>CPV codes</strong> (<code>72</code> = IT services, <code>45</code> = construction) and <strong>Minimum value</strong>.</li>
 <li>Run, then export as CSV, Excel or JSON. Schedule it daily with <strong>Published in the last N days</strong> = 1 for a daily tender alert.</li>
 </ol>
+<h2>Ready-made searches</h2>
+<p>Copy one of these into the <strong>JSON</strong> tab of the input and run it.</p>
+<p><strong>UK IT and software tenders worth £100k or more, published in the last week</strong></p>
+<pre><code class="language-json">{&quot;keywords&quot;: [&quot;software&quot;, &quot;IT services&quot;, &quot;cloud&quot;], &quot;countries&quot;: [&quot;GB&quot;], &quot;noticeKind&quot;: &quot;open&quot;, &quot;publishedWithinDays&quot;: 7, &quot;minValue&quot;: 100000}
+</code></pre>
+<p><strong>Construction tenders in Germany, Austria and the Netherlands (CPV 45), daily alert</strong></p>
+<pre><code class="language-json">{&quot;sources&quot;: [&quot;ted&quot;], &quot;countries&quot;: [&quot;DE&quot;, &quot;AT&quot;, &quot;NL&quot;], &quot;cpvCodes&quot;: [&quot;45&quot;], &quot;noticeKind&quot;: &quot;open&quot;, &quot;publishedWithinDays&quot;: 1}
+</code></pre>
+<p><strong>Who won cybersecurity contracts across the EU and UK this month</strong></p>
+<pre><code class="language-json">{&quot;keywords&quot;: [&quot;cybersecurity&quot;], &quot;noticeKind&quot;: &quot;awards&quot;, &quot;publishedWithinDays&quot;: 30, &quot;maxResults&quot;: 500}
+</code></pre>
+<p><strong>Every new UK opportunity from Contracts Finder today (good for small suppliers, from £12k)</strong></p>
+<pre><code class="language-json">{&quot;sources&quot;: [&quot;uk-contracts-finder&quot;], &quot;noticeKind&quot;: &quot;open&quot;, &quot;publishedWithinDays&quot;: 1, &quot;maxResults&quot;: 1000}
+</code></pre>
 <h2>Use cases</h2>
 <ul>
 <li><strong>Bid teams and suppliers:</strong> a daily feed of new tenders in your sector and countries.</li>
@@ -69,10 +104,17 @@
 <p><strong>$2 per 1,000 notices</strong> ($0.002 per tender notice returned). Platform usage is included. Use <strong>Max results</strong> to cap spend.</p>
 <h2>For AI agents</h2>
 <p>Call it via the Apify API or MCP server with e.g. <code>{"keywords": ["cybersecurity"], "countries": ["DE", "NL"], "publishedWithinDays": 2}</code>. You get one object per notice with fixed field names; <code>noticeType</code> is <code>tender</code>, <code>planning</code> or <code>award</code>. Dates are <code>YYYY-MM-DD</code>. Results are split fairly between the sources you choose.</p>
+<h2>FAQ</h2>
+<p><strong>Is this a TED API alternative?</strong> It uses the official TED search API under the hood and adds UK Find a Tender and Contracts Finder, so you get EU and UK notices with one set of field names and no API code to write.</p>
+<p><strong>Do I need an API key for TED or Find a Tender?</strong> No. The official APIs are open; you only need an Apify account.</p>
+<p><strong>How do I get daily tender alerts by email or Slack?</strong> Save your input as a task, schedule it daily with <strong>Published in the last N days</strong> = 1, and add an Apify integration (email, Slack, Google Sheets, Zapier or Make) to send each day's new notices.</p>
+<p><strong>What is a CPV code?</strong> The EU's Common Procurement Vocabulary: an 8-digit code for what is being bought. Use the first 2 digits for a whole sector, e.g. <code>72</code> IT services, <code>45</code> construction, <code>79</code> business services, <code>33</code> medical equipment, <code>90</code> cleaning and waste.</p>
+<p><strong>Can I use it with ChatGPT, Claude or Cursor?</strong> Yes. Add the Apify MCP server with this tool (<code>https://mcp.apify.com/?tools=datasetworks/public-tenders</code>) and ask in plain English, for example "find open UK tenders for school catering this week".</p>
+<p><strong>Does it cover other countries?</strong> TED covers all EU member states plus EEA and some partner countries. Tell us which national portal you need next.</p>
 <h2>Data and responsibility</h2>
 <p>All data comes from official open-data APIs: the TED search API of the EU Publications Office (free reuse, including commercial) and the UK Cabinet Office's Find a Tender and Contracts Finder OCDS APIs (Open Government Licence v3.0). The tool does not return personal data: contact names, email addresses and phone numbers in notices are left out, and awarded suppliers are only listed when they are clearly organisations. TED keyword search covers the full notice text; titles are in the notice's original language, with TED's English summary line in <code>titleEnglish</code>.</p>
 <h2>Support</h2>
 <p>Need another country's portal or another field? Open an issue on this page and we'll reply within one working day.</p>
-<p>Built and maintained by <strong>Dataset Works</strong>.</p></article><p><a class="btn" href="https://apify.com/datasetworks/public-tenders" rel="sponsored">Open EU &amp; UK Public Tenders (TED, Find a Tender, Contracts Finder) on Apify</a></p><h2>Guides</h2><ul><li><a href="/guides/get-a-daily-feed-of-new-eu-and-uk-tenders/">How to get a daily feed of new EU and UK public tenders</a></li></ul></main>
+<p>Built and maintained by <strong>Dataset Works</strong>.</p></article><p><a class="btn" href="https://apify.com/datasetworks/public-tenders" rel="sponsored">Open EU &amp; UK Public Tenders (TED, Find a Tender, Contracts Finder) on Apify</a></p><h2>Guides</h2><ul><li><a href="/guides/find-uk-government-contracts-to-bid-on/">How to find UK government contracts to bid on (and get alerts every morning)</a></li><li><a href="/guides/get-a-daily-feed-of-new-eu-and-uk-tenders/">How to get a daily feed of new EU and UK public tenders</a></li></ul></main>
 <footer><p>Dataset Works builds data tools that do one job well, from public business data only. Tools run on the <a href="https://apify.com" rel="sponsored">Apify</a> platform, which handles accounts and billing. Questions or bugs: open an issue on the tool's Apify page.</p><p>© 2026 Dataset Works</p></footer>
 </body></html>

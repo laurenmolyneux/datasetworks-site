@@ -1,0 +1,63 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to find sales leads from hiring signals | Dataset Works</title><meta name="description" content="Use companies&#x27; public job postings to spot who is about to buy what you sell, with a repeatable list you can refresh every week."><link rel="canonical" href="https://datasetworks.dev/guides/find-sales-leads-from-hiring-signals/">
+<meta property="og:title" content="How to find sales leads from hiring signals | Dataset Works"><meta property="og:description" content="Use companies&#x27; public job postings to spot who is about to buy what you sell, with a repeatable list you can refresh every week."><meta property="og:site_name" content="Dataset Works">
+<meta property="og:image" content="https://datasetworks.dev/logo-icon-512.png"><link rel="icon" href="/logo-icon.svg"><link rel="stylesheet" href="/style.css"></head><body>
+<header><img src="/logo-icon.svg" alt=""><a class="brand" href="/">Dataset Works</a></header>
+<main><article><h1>How to find sales leads from hiring signals</h1><p>A company that posts a job for a "Head of Data Engineering" is probably about to buy data tools. One hiring five SDRs needs sales software and training. A first "Compliance Manager" means compliance spend is coming. Job postings are one of the clearest public buying signals there is, and they appear weeks before a purchase.</p>
+<h2>The idea</h2>
+<ol>
+<li>Keep a list of companies that fit your customer profile.</li>
+<li>Every week, pull their open roles.</li>
+<li>Flag the companies hiring for roles that use, buy or manage what you sell.</li>
+<li>Reach out while the need is fresh, mentioning the team they are building.</li>
+</ol>
+<h2>Pull the jobs</h2>
+<p>The <a href="/tools/company-jobs/">ATS Job Listings</a> tool reads companies' public job boards on Greenhouse, Lever, Ashby, Personio and Recruitee, and returns every open role with the same columns. Use the <code>keyword</code> filter to keep only the roles that signal a need:</p>
+<pre><code class="language-json">{&quot;companies&quot;: [&quot;greenhouse:datadog&quot;, &quot;ashby:notion&quot;, &quot;greenhouse:figma&quot;, &quot;ashby:ramp&quot;], &quot;keyword&quot;: &quot;data engineer, analytics, data platform&quot;}
+</code></pre>
+<p>Each row has <code>company</code>, <code>title</code>, <code>department</code>, <code>location</code>, <code>postedAt</code> and the <code>url</code> of the posting, so the evidence for every lead is one click away.</p>
+<h2>Signals that work well</h2>
+<table>
+<thead>
+<tr>
+<th>You sell</th>
+<th>Look for roles like</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sales tools, sales training</td>
+<td><code>account executive</code>, <code>SDR</code>, <code>BDR</code>, <code>sales enablement</code></td>
+</tr>
+<tr>
+<td>Data and analytics tools</td>
+<td><code>data engineer</code>, <code>analytics engineer</code>, <code>head of data</code></td>
+</tr>
+<tr>
+<td>Security and compliance</td>
+<td><code>security engineer</code>, <code>compliance</code>, <code>GRC</code>, <code>SOC 2</code></td>
+</tr>
+<tr>
+<td>Recruiting services</td>
+<td>many open roles at once, or a first <code>talent acquisition</code> hire</td>
+</tr>
+<tr>
+<td>Cloud and DevOps tooling</td>
+<td><code>platform engineer</code>, <code>SRE</code>, <code>DevOps</code></td>
+</tr>
+<tr>
+<td>Expansion services (legal, payroll, office)</td>
+<td>the first roles in a new country</td>
+</tr>
+</tbody>
+</table>
+<h2>Make it weekly</h2>
+<p>Save your input as a task on Apify and schedule it weekly. Send the results to Google Sheets with the built-in integration. Because each job has a stable <code>jobId</code>, a new row that wasn't there last week is a new signal.</p>
+<h2>Use it with an AI agent</h2>
+<p>Connect the tool to Claude, ChatGPT or Cursor through MCP (see <a href="/guides/use-data-tools-in-claude-chatgpt-and-cursor-with-mcp/">how to use Dataset Works tools in AI assistants</a>) and ask: "Which of these 20 companies are hiring data engineers, and what do the postings say about their stack?"</p>
+<h2>Cost</h2>
+<p>$1.50 per 1,000 jobs. A weekly check of 50 companies with a keyword filter usually costs well under a dollar.</p>
+<h2>Good practice</h2>
+<p>Job postings are public business information about companies, not people. Use them to understand what a company needs. Don't use them to identify or contact individual candidates.</p><p><a class="btn" href="https://apify.com/datasetworks/company-jobs" rel="sponsored">Try the tool on Apify</a></p></article></main>
+<footer><p>Dataset Works builds data tools that do one job well, from public business data only. Tools run on the <a href="https://apify.com" rel="sponsored">Apify</a> platform, which handles accounts and billing. Questions or bugs: open an issue on the tool's Apify page.</p><p>© 2026 Dataset Works</p></footer>
+</body></html>

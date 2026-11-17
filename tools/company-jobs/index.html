@@ -65,6 +65,23 @@
 </tbody>
 </table>
 <p>Every row also has <code>jobId</code>, <code>url</code> (the apply link), <code>postedAt</code>, <code>updatedAt</code>, <code>scrapedAt</code> and, if you ask for it, <code>description</code> as clean plain text.</p>
+<p>One record as JSON:</p>
+<pre><code class="language-json">{
+  &quot;company&quot;: &quot;stripe&quot;,
+  &quot;platform&quot;: &quot;greenhouse&quot;,
+  &quot;jobId&quot;: &quot;8172508&quot;,
+  &quot;title&quot;: &quot;Abuse Investigator&quot;,
+  &quot;location&quot;: &quot;Dublin&quot;,
+  &quot;department&quot;: &quot;Security Analytics&quot;,
+  &quot;employmentType&quot;: null,
+  &quot;isRemote&quot;: false,
+  &quot;url&quot;: &quot;https://stripe.com/jobs/search?gh_jid=8172508&quot;,
+  &quot;postedAt&quot;: &quot;2026-09-03T13:32:53-04:00&quot;,
+  &quot;updatedAt&quot;: &quot;2026-10-29T10:42:09-04:00&quot;,
+  &quot;compensation&quot;: null,
+  &quot;scrapedAt&quot;: &quot;2026-11-17T07:09:20.993Z&quot;
+}
+</code></pre>
 <h2>How to use</h2>
 <ol>
 <li>Add companies to <strong>Companies</strong>. Any of these work:</li>
@@ -77,6 +94,18 @@
 </ol>
 <p>The default input works with no setup. A <code>SUMMARY</code> record in the key-value store lists how many jobs each company returned, and which companies had no board found.</p>
 <p><strong>Tip:</strong> the board name is the last part of a company's careers link, e.g. <code>jobs.lever.co/</code><strong><code>palantir</code></strong>.</p>
+<h2>Ready-made inputs</h2>
+<p>Copy one of these into the <strong>JSON</strong> tab of the input and run it.</p>
+<p><strong>Engineering roles at a list of AI companies</strong></p>
+<pre><code class="language-json">{&quot;companies&quot;: [&quot;anthropic&quot;, &quot;ashby:openai&quot;, &quot;greenhouse:scaleai&quot;, &quot;ashby:cohere&quot;], &quot;keyword&quot;: &quot;engineer&quot;}
+</code></pre>
+<p><strong>Remote-only jobs at fintechs, with full descriptions</strong></p>
+<pre><code class="language-json">{&quot;companies&quot;: [&quot;stripe&quot;, &quot;ashby:ramp&quot;, &quot;greenhouse:affirm&quot;, &quot;greenhouse:brex&quot;], &quot;remoteOnly&quot;: true, &quot;includeDescription&quot;: true}
+</code></pre>
+<p><strong>Sales hiring signals: who is hiring account executives</strong></p>
+<pre><code class="language-json">{&quot;companies&quot;: [&quot;greenhouse:datadog&quot;, &quot;ashby:notion&quot;, &quot;greenhouse:figma&quot;, &quot;lever:palantir&quot;], &quot;keyword&quot;: &quot;account executive, sales&quot;}
+</code></pre>
+<p>Schedule any of these daily or weekly and compare runs to see new and closed roles.</p>
 <h2>Use cases</h2>
 <ul>
 <li>Track hiring at competitors, customers or portfolio companies.</li>
@@ -88,10 +117,16 @@
 <p><strong>$1.50 per 1,000 jobs</strong> ($0.0015 per job returned). No charge for companies with no jobs found. Platform usage is included. Example: 5 companies with 500 open roles in total costs $0.75.</p>
 <h2>For AI agents</h2>
 <p>Call it through the Apify API or the Apify MCP server with <code>{"companies": ["stripe", "lever:palantir"]}</code>. It returns one JSON object per job with a fixed set of fields, so agents can rely on the shape. Use <code>keyword</code>, <code>remoteOnly</code> and <code>maxJobsPerCompany</code> to keep responses small.</p>
+<h2>FAQ</h2>
+<p><strong>Is this a Greenhouse API or Lever API scraper?</strong> Yes. It reads the public job-board APIs of Greenhouse, Lever, Ashby, Personio and Recruitee and gives you one table with the same columns for all five, so you don't need separate code for each.</p>
+<p><strong>How do I find a company's board name?</strong> It's the last part of their careers link, e.g. <code>boards.greenhouse.io/</code><strong><code>stripe</code></strong> or <code>jobs.ashbyhq.com/</code><strong><code>ramp</code></strong>. If you only give a name, the tool tries each platform for you.</p>
+<p><strong>Does it work for LinkedIn or Indeed?</strong> No. It only reads companies' own public job boards, which are the original source of most tech and startup jobs, and it never logs in anywhere.</p>
+<p><strong>How do I track hiring changes over time?</strong> Save your company list as a task, schedule it daily or weekly, and send results to Google Sheets or a webhook. Each job has a stable <code>jobId</code>, so new and removed roles are easy to spot.</p>
+<p><strong>Can I use it with ChatGPT, Claude or Cursor?</strong> Yes. Add the Apify MCP server with this tool (<code>https://mcp.apify.com/?tools=datasetworks/company-jobs</code>) and ask "what data roles is Ramp hiring for?".</p>
 <h2>Data and responsibility</h2>
 <p>Data comes only from the public job-board APIs that Greenhouse, Lever, Ashby, Personio and Recruitee provide so companies can publish their jobs. The tool collects job postings, not people: no candidate or employee data, no logins, nothing behind access controls. It follows each site's robots.txt and rate limits.</p>
 <h2>Support</h2>
 <p>Found a bug or need a field? Open an issue on this page and we'll reply within one working day.</p>
-<p>Built and maintained by <strong>Dataset Works</strong>.</p></article><p><a class="btn" href="https://apify.com/datasetworks/company-jobs" rel="sponsored">Open ATS Job Listings: Greenhouse, Lever, Ashby, Personio, Recruitee on Apify</a></p><h2>Guides</h2><ul><li><a href="/guides/track-competitor-hiring/">How to track competitor hiring from their careers pages</a></li></ul></main>
+<p>Built and maintained by <strong>Dataset Works</strong>.</p></article><p><a class="btn" href="https://apify.com/datasetworks/company-jobs" rel="sponsored">Open ATS Job Listings: Greenhouse, Lever, Ashby, Personio, Recruitee on Apify</a></p><h2>Guides</h2><ul><li><a href="/guides/find-sales-leads-from-hiring-signals/">How to find sales leads from hiring signals</a></li><li><a href="/guides/track-competitor-hiring/">How to track competitor hiring from their careers pages</a></li></ul></main>
 <footer><p>Dataset Works builds data tools that do one job well, from public business data only. Tools run on the <a href="https://apify.com" rel="sponsored">Apify</a> platform, which handles accounts and billing. Questions or bugs: open an issue on the tool's Apify page.</p><p>© 2026 Dataset Works</p></footer>
 </body></html>
