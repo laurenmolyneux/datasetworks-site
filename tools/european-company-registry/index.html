@@ -1,0 +1,129 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Company Registry Search: France, Norway, Finland | Dataset Works</title><meta name="description" content="Search official company registers of France (SIRENE/RNE), Norway (Brønnøysund) and Finland (PRH/YTJ) in one clean table. Look up by ID or search by name, indust"><link rel="canonical" href="https://datasetworks.dev/tools/european-company-registry/">
+<meta property="og:title" content="Company Registry Search: France, Norway, Finland | Dataset Works"><meta property="og:description" content="Search official company registers of France (SIRENE/RNE), Norway (Brønnøysund) and Finland (PRH/YTJ) in one clean table. Look up by ID or search by name, indust"><meta property="og:site_name" content="Dataset Works">
+<meta property="og:image" content="https://datasetworks.dev/logo-icon-512.png"><link rel="icon" href="/logo-icon.svg"><link rel="stylesheet" href="/style.css"></head><body>
+<header><img src="/logo-icon.svg" alt=""><a class="brand" href="/">Dataset Works</a></header>
+<main><section class="hero"><h1>Company Registry Search: France, Norway, Finland</h1><p>Search official company registers of France (SIRENE/RNE), Norway (Brønnøysund) and Finland (PRH/YTJ) in one clean table. Look up by ID or search by name, industry code, postcode and registration date. Company-level data only.</p>
+<p><a class="btn" href="https://apify.com/datasetworks/european-company-registry" rel="sponsored">Try it on Apify</a> <span class="price">$1.50 per 1,000 company records</span></p></section>
+<article><p><strong>Look up and list companies from three official national company registers, France, Norway and Finland, in one clean table.</strong></p>
+<p>Search by company name, look up exact registry IDs, or build lists of companies by industry code, postcode and registration date. Every company comes back with the same fields whatever the country: registry ID, VAT number, legal form, status, industry code, incorporation date, address, employee band and website. No API keys, no scraping of web pages: only the registers' own open-data APIs.</p>
+<h2>Sample output</h2>
+<table>
+<thead>
+<tr>
+<th>country</th>
+<th>registryId</th>
+<th>name</th>
+<th>legalForm</th>
+<th>status</th>
+<th>industryCode</th>
+<th>incorporationDate</th>
+<th>city</th>
+<th>employees</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FR</td>
+<td>306138900</td>
+<td>DECATHLON</td>
+<td>European company (SE)</td>
+<td>active</td>
+<td>68.20B</td>
+<td>1977-01-01</td>
+<td>VILLENEUVE-D'ASCQ</td>
+<td>5000-9999</td>
+</tr>
+<tr>
+<td>NO</td>
+<td>923609016</td>
+<td>EQUINOR ASA</td>
+<td>Allmennaksjeselskap</td>
+<td>active</td>
+<td>06.100</td>
+<td>1972-09-18</td>
+<td>STAVANGER</td>
+<td>21182</td>
+</tr>
+<tr>
+<td>FI</td>
+<td>0112038-9</td>
+<td>Nokia Oyj</td>
+<td>Public limited company</td>
+<td>active</td>
+<td>70100</td>
+<td>1978-03-15</td>
+<td>ESPOO</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Each row also has <code>registry</code>, <code>branchId</code> (French head-office SIRET), <code>vatId</code>, <code>otherNames</code> (trade names and former names), <code>legalFormCode</code>, <code>industryDescription</code>, <code>industryCodeSystem</code>, <code>closedDate</code>, <code>street</code>, <code>postalCode</code>, <code>region</code>, <code>companySize</code> (France: SME / Mid-size / Large), <code>establishments</code>, <code>website</code>, <code>marketingOptOut</code> (France), <code>latitude</code>/<code>longitude</code> (France), <code>registryUrl</code> and <code>lastUpdated</code>.</p>
+<p>One record as JSON:</p>
+<pre><code class="language-json">{
+  &quot;country&quot;: &quot;NO&quot;,
+  &quot;registry&quot;: &quot;Brønnøysund Enhetsregisteret (Norway)&quot;,
+  &quot;registryId&quot;: &quot;923609016&quot;,
+  &quot;vatId&quot;: &quot;NO923609016MVA&quot;,
+  &quot;name&quot;: &quot;EQUINOR ASA&quot;,
+  &quot;legalForm&quot;: &quot;Allmennaksjeselskap&quot;,
+  &quot;legalFormCode&quot;: &quot;ASA&quot;,
+  &quot;status&quot;: &quot;active&quot;,
+  &quot;industryCode&quot;: &quot;06.100&quot;,
+  &quot;industryDescription&quot;: &quot;Utvinning av råolje&quot;,
+  &quot;incorporationDate&quot;: &quot;1972-09-18&quot;,
+  &quot;street&quot;: &quot;Forusbeen 50&quot;,
+  &quot;postalCode&quot;: &quot;4035&quot;,
+  &quot;city&quot;: &quot;STAVANGER&quot;,
+  &quot;employees&quot;: &quot;21182&quot;,
+  &quot;website&quot;: &quot;https://www.equinor.com&quot;,
+  &quot;registryUrl&quot;: &quot;https://virksomhet.brreg.no/nb/oppslag/enheter/923609016&quot;
+}
+</code></pre>
+<h2>How to use</h2>
+<ol>
+<li>Pick the <strong>Countries</strong> to search (France, Norway, Finland, or all three).</li>
+<li>Enter a <strong>Company name</strong>, or paste <strong>Registry IDs</strong> for exact lookups (SIREN/SIRET, Norwegian organisation numbers, Finnish Y-tunnus; the country is detected from the format).</li>
+<li>Or build a list with <strong>Industry codes</strong>, <strong>Postcode</strong> and <strong>Registered on or after</strong>.</li>
+<li>Run, then export as CSV, Excel or JSON, or call it from your app or AI agent.</li>
+</ol>
+<h2>Ready-made searches</h2>
+<p>Copy one of these into the <strong>JSON</strong> tab of the input and run it.</p>
+<p><strong>Verify a list of company IDs (KYB, supplier onboarding, CRM clean-up)</strong></p>
+<pre><code class="language-json">{&quot;registryIds&quot;: [&quot;306138900&quot;, &quot;923609016&quot;, &quot;0112038-9&quot;]}
+</code></pre>
+<p><strong>New software companies registered in Norway and Finland this month</strong></p>
+<pre><code class="language-json">{&quot;countries&quot;: [&quot;NO&quot;, &quot;FI&quot;], &quot;industryCodes&quot;: [&quot;62.100&quot;, &quot;62100&quot;], &quot;registeredAfter&quot;: &quot;2026-11-01&quot;, &quot;maxResults&quot;: 500}
+</code></pre>
+<p><strong>IT consultancies in Lyon (postcode 69002)</strong></p>
+<pre><code class="language-json">{&quot;countries&quot;: [&quot;FR&quot;], &quot;industryCodes&quot;: [&quot;62.02A&quot;], &quot;postalCode&quot;: &quot;69002&quot;, &quot;maxResults&quot;: 200}
+</code></pre>
+<p><strong>Find every company called "nordic" in all three registers</strong></p>
+<pre><code class="language-json">{&quot;query&quot;: &quot;nordic&quot;, &quot;maxResults&quot;: 100}
+</code></pre>
+<h2>Use cases</h2>
+<ul>
+<li><strong>Sales and lead lists:</strong> new companies by sector and area, the moment they register.</li>
+<li><strong>KYB and supplier checks:</strong> confirm a company exists, is active, and get its VAT number and legal form.</li>
+<li><strong>CRM enrichment:</strong> add registry ID, industry code, size band and address to company records.</li>
+<li><strong>AI agents:</strong> give an agent a reliable tool to answer "is this French company still active?" or "list new Finnish fintechs".</li>
+</ul>
+<h2>Pricing</h2>
+<p><strong>$1.50 per 1,000 companies</strong> ($0.0015 per company record returned). Platform usage is included. Use <strong>Max results</strong> to cap spend.</p>
+<h2>For AI agents</h2>
+<p>Call it via the Apify API or MCP server with e.g. <code>{"registryIds": ["923609016"]}</code> or <code>{"query": "acme", "countries": ["FR"]}</code>. You get one object per company with fixed field names across all three countries; <code>status</code> is <code>active</code>, <code>closed</code>, <code>bankrupt</code>, <code>in liquidation</code> or <code>deregistered</code>. Dates are <code>YYYY-MM-DD</code>. Results are split fairly between the countries you choose.</p>
+<h2>FAQ</h2>
+<p><strong>Do I need an API key?</strong> No. All three registers have open APIs; you only need an Apify account.</p>
+<p><strong>Which industry codes do I use?</strong> Each register's own: France NAF (e.g. <code>62.01Z</code>), Norway SN2025 with a dot (e.g. <code>62.100</code>), Finland TOL 2008 (e.g. <code>62100</code>). You can mix them in one run; each code is only sent to the register whose format it matches.</p>
+<p><strong>Does the date filter work for France?</strong> The French API has no registration-date filter, so the tool checks creation dates itself on a limited number of result pages. Combine it with an industry code or postcode for complete French results.</p>
+<p><strong>Do you return directors or owners?</strong> No. This tool returns company-level data only (see below).</p>
+<p><strong>Can I use it with ChatGPT, Claude or Cursor?</strong> Yes. Add the Apify MCP server with this tool (<code>https://mcp.apify.com/?tools=datasetworks/european-company-registry</code>) and ask in plain English.</p>
+<p><strong>Which countries are next?</strong> Tell us which register you need by opening an issue.</p>
+<h2>Data and responsibility</h2>
+<p>Data comes from official open-data APIs: France's API Recherche d'entreprises (INSEE SIRENE and INPI RNE data, Licence Ouverte), Norway's Brønnøysund Enhetsregisteret (Norwegian Licence for Open Government Data, NLOD) and Finland's PRH open data (YTJ, CC BY 4.0; source: Finnish Patent and Registration Office). This tool is not affiliated with or endorsed by these agencies.</p>
+<p>No personal data: directors, owners, beneficial owners, email addresses and phone numbers are never returned, and sole traders (whose company name is usually a person's name) are skipped. French records whose owner has not made them public are skipped. <code>marketingOptOut: true</code> means the French company has opted out of commercial prospecting: do not use those records for direct marketing.</p>
+<h2>Support</h2>
+<p>Need another country or field? Open an issue on this page and we'll reply within one working day.</p>
+<p>Built and maintained by <strong>Dataset Works</strong>.</p></article><p><a class="btn" href="https://apify.com/datasetworks/european-company-registry" rel="sponsored">Open Company Registry Search: France, Norway, Finland on Apify</a></p><h2>Guides</h2><ul><li><a href="/guides/find-new-companies-in-france-norway-finland/">How to find newly registered companies in France, Norway and Finland</a></li></ul></main>
+<footer><p>Dataset Works builds data tools that do one job well, from public business data only. Tools run on the <a href="https://apify.com" rel="sponsored">Apify</a> platform, which handles accounts and billing. Questions or bugs: open an issue on the tool's Apify page.</p><p>© 2026 Dataset Works</p></footer>
+</body></html>

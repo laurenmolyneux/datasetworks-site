@@ -1,0 +1,34 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to find newly registered companies in France, Norway and Finland | Dataset Works</title><meta name="description" content="Build a list of new companies by industry and area from the official French, Norwegian and Finnish company registers, or check a list of company IDs, with no AP"><link rel="canonical" href="https://datasetworks.dev/guides/find-new-companies-in-france-norway-finland/">
+<meta property="og:title" content="How to find newly registered companies in France, Norway and Finland | Dataset Works"><meta property="og:description" content="Build a list of new companies by industry and area from the official French, Norwegian and Finnish company registers, or check a list of company IDs, with no AP"><meta property="og:site_name" content="Dataset Works">
+<meta property="og:image" content="https://datasetworks.dev/logo-icon-512.png"><link rel="icon" href="/logo-icon.svg"><link rel="stylesheet" href="/style.css"></head><body>
+<header><img src="/logo-icon.svg" alt=""><a class="brand" href="/">Dataset Works</a></header>
+<main><article><h1>How to find newly registered companies in France, Norway and Finland</h1><p>A company that registered last week is a company that needs a bank, an accountant, software, an office and a website. National company registers publish that data openly, but each country has its own API, its own codes and its own field names.</p>
+<h2>What you get</h2>
+<p>The <a href="/tools/european-company-registry/">Company Registry Search</a> tool queries three official registers at once and returns one row per company with the same fields every time:</p>
+<ul>
+<li><code>registryId</code> and <code>vatId</code>: the SIREN, Norwegian organisation number or Finnish Y-tunnus, plus the VAT number</li>
+<li><code>name</code>, <code>otherNames</code>, <code>legalForm</code> and <code>status</code> (active, closed, bankrupt, in liquidation)</li>
+<li><code>industryCode</code> and <code>industryDescription</code>, <code>incorporationDate</code></li>
+<li><code>street</code>, <code>postalCode</code>, <code>city</code>, <code>employees</code> band and <code>website</code> where the register has them</li>
+<li><code>registryUrl</code>: the company's official register page</li>
+</ul>
+<p>It returns company-level data only. Directors, owners, emails and phone numbers are never included, and sole traders are skipped.</p>
+<h2>Recipe 1: new software companies this month</h2>
+<pre><code class="language-json">{&quot;countries&quot;: [&quot;NO&quot;, &quot;FI&quot;], &quot;industryCodes&quot;: [&quot;62.100&quot;, &quot;62100&quot;], &quot;registeredAfter&quot;: &quot;2026-11-01&quot;, &quot;maxResults&quot;: 500}
+</code></pre>
+<p>Each register uses its own industry codes: Norway SN2025 with a dot (<code>62.100</code>), Finland TOL (<code>62100</code>), France NAF (<code>62.01Z</code>). Mix them in one run and each code goes only to the register it belongs to.</p>
+<h2>Recipe 2: check a list of company IDs</h2>
+<p>Paste SIRENs, Norwegian organisation numbers or Finnish Y-tunnus codes into <strong>Registry IDs</strong>:</p>
+<pre><code class="language-json">{&quot;registryIds&quot;: [&quot;306138900&quot;, &quot;923609016&quot;, &quot;0112038-9&quot;]}
+</code></pre>
+<p>The country is detected from the format. Use it to confirm a supplier exists and is active, or to fill in VAT numbers and legal forms in a CRM.</p>
+<h2>Recipe 3: companies in one sector and postcode</h2>
+<pre><code class="language-json">{&quot;countries&quot;: [&quot;FR&quot;], &quot;industryCodes&quot;: [&quot;62.02A&quot;], &quot;postalCode&quot;: &quot;69002&quot;, &quot;maxResults&quot;: 200}
+</code></pre>
+<h2>Make it a weekly lead list</h2>
+<p>Save your input as an Apify task, schedule it weekly with <strong>Registered on or after</strong> set to last week, and add the Google Sheets or Slack integration. New companies land in your sheet automatically.</p>
+<h2>Cost</h2>
+<p>$1.50 per 1,000 companies. A weekly list of 200 new companies costs about $0.30.</p><p><a class="btn" href="https://apify.com/datasetworks/european-company-registry" rel="sponsored">Try the tool on Apify</a></p></article></main>
+<footer><p>Dataset Works builds data tools that do one job well, from public business data only. Tools run on the <a href="https://apify.com" rel="sponsored">Apify</a> platform, which handles accounts and billing. Questions or bugs: open an issue on the tool's Apify page.</p><p>© 2026 Dataset Works</p></footer>
+</body></html>
