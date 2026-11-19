@@ -7,7 +7,7 @@
 <p>The tools run on Apify, which hosts the MCP server and handles billing, so you pay per result and nothing else.</p>
 <h2>The MCP server address</h2>
 <p>Use this URL to get all eight tools:</p>
-<pre><code>https://mcp.apify.com/?tools=datasetworks/public-tenders,datasetworks/company-jobs,datasetworks/web-to-text,datasetworks/website-tech-stack,datasetworks/domain-dns-ssl-lookup,datasetworks/website-seo-audit,datasetworks/shopify-store-products,datasetworks/news-trend-monitor
+<pre><code>https://mcp.apify.com/?tools=datasetworks/public-tenders,datasetworks/company-jobs,datasetworks/web-to-text,datasetworks/website-tech-stack,datasetworks/domain-dns-ssl-lookup,datasetworks/website-seo-audit,datasetworks/european-company-registry,datasetworks/rss-feed-to-json,datasetworks/news-trend-monitor
 </code></pre>
 <p>Or load just one, for example <code>https://mcp.apify.com/?tools=datasetworks/public-tenders</code>.</p>
 <h2>Claude (claude.ai and Claude Desktop)</h2>
@@ -21,7 +21,7 @@
 <pre><code class="language-json">{
   &quot;mcpServers&quot;: {
     &quot;dataset-works&quot;: {
-      &quot;url&quot;: &quot;https://mcp.apify.com/?tools=datasetworks/public-tenders,datasetworks/company-jobs,datasetworks/web-to-text,datasetworks/website-tech-stack,datasetworks/domain-dns-ssl-lookup,datasetworks/website-seo-audit,datasetworks/shopify-store-products,datasetworks/news-trend-monitor&quot;,
+      &quot;url&quot;: &quot;https://mcp.apify.com/?tools=datasetworks/public-tenders,datasetworks/company-jobs,datasetworks/web-to-text,datasetworks/website-tech-stack,datasetworks/domain-dns-ssl-lookup,datasetworks/website-seo-audit,datasetworks/european-company-registry,datasetworks/rss-feed-to-json,datasetworks/news-trend-monitor&quot;,
       &quot;headers&quot;: { &quot;Authorization&quot;: &quot;Bearer YOUR_APIFY_TOKEN&quot; }
     }
   }
@@ -64,12 +64,16 @@
 <td><a href="/tools/website-seo-audit/">website-seo-audit</a></td>
 </tr>
 <tr>
-<td>Products and prices from Shopify stores</td>
-<td><a href="/tools/shopify-store-products/">shopify-store-products</a></td>
-</tr>
-<tr>
 <td>News mentions and trends for a topic</td>
 <td><a href="/tools/news-trend-monitor/">news-trend-monitor</a></td>
+</tr>
+<tr>
+<td>Company records from French, Norwegian and Finnish registers</td>
+<td><a href="/tools/european-company-registry/">european-company-registry</a></td>
+</tr>
+<tr>
+<td>New items from RSS, Atom and JSON feeds</td>
+<td><a href="/tools/rss-feed-to-json/">rss-feed-to-json</a></td>
 </tr>
 </tbody>
 </table>

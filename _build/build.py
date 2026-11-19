@@ -120,7 +120,7 @@ def main():
 <div class="grid">{''.join(cards)}</div>
 <h2>Use them from your AI assistant</h2><p>Connect all eight tools to Claude, ChatGPT, Cursor or any MCP client with one URL. <a href="/guides/use-data-tools-in-claude-chatgpt-and-cursor-with-mcp/">See the MCP setup guide</a>.</p>
 <h2>Guides</h2><ul>{''.join(glinks)}</ul>"""
-    open(os.path.join(OUT, "index.html"), "w").write(page("Dataset Works: clean data tools for AI agents and spreadsheets", "Pay-per-result data tools for jobs, website tech stacks, DNS and SSL checks, news trends, Shopify products and web-to-markdown. Public business data, built for AI agents.", home, "/"))
+    open(os.path.join(OUT, "index.html"), "w").write(page("Dataset Works: clean data tools for AI agents and spreadsheets", "Pay-per-result data tools for jobs, website tech stacks, DNS and SSL checks, news trends, RSS feeds, tenders, company registries and web-to-markdown. Public business data, built for AI agents.", home, "/"))
     today = datetime.date.today().isoformat()
     open(os.path.join(OUT, "sitemap.xml"), "w").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + "".join(f"<url><loc>{SITE}{u}</loc><lastmod>{today}</lastmod></url>" for u in urls) + "</urlset>\n")
     open(os.path.join(OUT, "robots.txt"), "w").write(f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n")
