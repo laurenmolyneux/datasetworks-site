@@ -1,0 +1,63 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Monitor RSS feeds and get only the new items, as JSON | Dataset Works</title><meta name="description" content="Watch competitor blogs, news sites and release notes for new posts on a schedule, with one clean JSON format for RSS, Atom and JSON Feed."><link rel="canonical" href="https://datasetworks.dev/guides/monitor-rss-feeds-and-get-only-new-items/">
+<meta property="og:title" content="Monitor RSS feeds and get only the new items, as JSON | Dataset Works"><meta property="og:description" content="Watch competitor blogs, news sites and release notes for new posts on a schedule, with one clean JSON format for RSS, Atom and JSON Feed."><meta property="og:site_name" content="Dataset Works">
+<meta property="og:image" content="https://datasetworks.dev/logo-icon-512.png"><link rel="icon" href="/logo-icon.svg"><link rel="stylesheet" href="/style.css"></head><body>
+<header><img src="/logo-icon.svg" alt=""><a class="brand" href="/">Dataset Works</a></header>
+<main><article><h1>Monitor RSS feeds and get only the new items, as JSON</h1><p>Most company blogs, news sites, changelogs and podcasts still publish a feed. Feeds are the politest, most reliable way to follow a site: they are made to be read by machines, and they change format far less than web pages. The catch is that there are four formats (RSS 2.0, RSS 1.0, Atom and JSON Feed), dates come in a dozen styles, and you usually only want what is new since you last looked.</p>
+<h2>Common uses</h2>
+<p><strong>Competitor and market monitoring.</strong> Follow competitors' blogs, product changelogs and press pages, and get a daily list of what they published.</p>
+<p><strong>Content and newsletter pipelines.</strong> Pull the week's posts from a list of sources into a sheet or database, ready to curate.</p>
+<p><strong>Fresh sources for AI agents.</strong> Give an agent a stable feed of recent articles to summarise, classify or answer questions from, without a parser for each site.</p>
+<h2>What you get</h2>
+<p>The <a href="/tools/rss-feed-to-json/">RSS &amp; Atom Feed Reader to JSON</a> returns one row per item with the same fields whatever the format:</p>
+<table>
+<thead>
+<tr>
+<th>field</th>
+<th>example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>feedTitle</code> / <code>feedUrl</code></td>
+<td>The GitHub Blog / https://github.blog/feed/</td>
+</tr>
+<tr>
+<td><code>title</code> / <code>link</code></td>
+<td>the item's headline and URL</td>
+</tr>
+<tr>
+<td><code>publishedAt</code></td>
+<td>always ISO 8601 in UTC</td>
+</tr>
+<tr>
+<td><code>summary</code></td>
+<td>plain text, HTML removed, up to 1,000 characters</td>
+</tr>
+<tr>
+<td><code>categories</code></td>
+<td>tags the publisher gave the item</td>
+</tr>
+<tr>
+<td><code>imageUrl</code> / <code>enclosures</code></td>
+<td>thumbnail, podcast audio or attachments</td>
+</tr>
+<tr>
+<td><code>itemId</code></td>
+<td>a stable ID, handy for de-duplicating in your own database</td>
+</tr>
+</tbody>
+</table>
+<p>You don't need to know a site's feed address: give it <code>github.blog</code> and the tool finds the feed the site advertises.</p>
+<h2>Steps</h2>
+<ol>
+<li>Paste feed URLs or website addresses into the tool.</li>
+<li>Tick <strong>Only new items since the last run</strong> and give it a <strong>State key</strong>, e.g. <code>competitors</code>.</li>
+<li>Run it once (you get the latest items), then schedule it hourly or daily. Each later run returns only items published since the previous one, and you're only charged for those.</li>
+<li>Send results to a spreadsheet, Slack, or a webhook with an Apify integration, or read them from the API.</li>
+</ol>
+<p>Add <strong>Keywords</strong> (e.g. <code>pricing, launch, acquisition</code>) to get only the items that matter, or <strong>Only items from the last N days</strong> for a one-off digest.</p>
+<h2>Cost</h2>
+<p>$0.80 per 1,000 items returned. A schedule that checks 20 blogs every hour and finds 30 new posts a day costs about $0.75 a month in item fees.</p><p><a class="btn" href="https://apify.com/datasetworks/rss-feed-to-json" rel="sponsored">Try the tool on Apify</a></p></article></main>
+<footer><p>Dataset Works builds data tools that do one job well, from public business data only. Tools run on the <a href="https://apify.com" rel="sponsored">Apify</a> platform, which handles accounts and billing. Questions or bugs: open an issue on the tool's Apify page.</p><p>© 2026 Dataset Works</p></footer>
+</body></html>

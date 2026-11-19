@@ -1,0 +1,65 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RSS &amp; Atom Feed Reader to JSON (with Feed Discovery) | Dataset Works</title><meta name="description" content="Turn any RSS, Atom or JSON Feed, or just a website URL, into clean JSON items with the same fields every time. Auto-discovers feeds, filters by date and keyword"><link rel="canonical" href="https://datasetworks.dev/tools/rss-feed-to-json/">
+<meta property="og:title" content="RSS &amp; Atom Feed Reader to JSON (with Feed Discovery) | Dataset Works"><meta property="og:description" content="Turn any RSS, Atom or JSON Feed, or just a website URL, into clean JSON items with the same fields every time. Auto-discovers feeds, filters by date and keyword"><meta property="og:site_name" content="Dataset Works">
+<meta property="og:image" content="https://datasetworks.dev/logo-icon-512.png"><link rel="icon" href="/logo-icon.svg"><link rel="stylesheet" href="/style.css"></head><body>
+<header><img src="/logo-icon.svg" alt=""><a class="brand" href="/">Dataset Works</a></header>
+<main><section class="hero"><h1>RSS &amp; Atom Feed Reader to JSON (with Feed Discovery)</h1><p>Turn any RSS, Atom or JSON Feed, or just a website URL, into clean JSON items with the same fields every time. Auto-discovers feeds, filters by date and keyword, and can return only new items. For monitoring, newsletters and AI agents.</p>
+<p><a class="btn" href="https://apify.com/datasetworks/rss-feed-to-json" rel="sponsored">Try it on Apify</a> <span class="price">$0.80 per 1,000 feed items</span></p></section>
+<article><p><strong>Turn any RSS, Atom or JSON Feed, or just a website address, into clean JSON items with the same fields every time.</strong></p>
+<p>Give it feed URLs or plain websites. It finds each site's feed, reads RSS 2.0, RSS 1.0 (RDF), Atom and JSON Feed, and returns one row per item with a consistent set of fields. Filter by date or keyword, and switch on <strong>Only new items</strong> to get just what was published since your last run. Ideal for news and competitor monitoring, newsletter and content pipelines, and feeding AI agents fresh sources.</p>
+<h2>Sample output</h2>
+<table>
+<thead>
+<tr>
+<th>feedTitle</th>
+<th>title</th>
+<th>publishedAt</th>
+<th>link</th>
+<th>feedFormat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The GitHub Blog</td>
+<td>Maintainers don't need more AI bug reports. They need fixes.</td>
+<td>2026-11-17T18:29:29Z</td>
+<td>https://github.blog/open-source/maintainers/...</td>
+<td>rss</td>
+</tr>
+<tr>
+<td>The Verge</td>
+<td>The nation's largest school districts consider ditching Google Search</td>
+<td>2026-11-18T23:18:35Z</td>
+<td>https://www.theverge.com/ai-artificial-intelligence/1037151/...</td>
+<td>atom</td>
+</tr>
+<tr>
+<td>JSON Feed</td>
+<td>JSON Feed version 1.1</td>
+<td>2020-08-07T16:44:36Z</td>
+<td>https://www.jsonfeed.org/2020/08/07/json-feed-version.html</td>
+<td>jsonfeed</td>
+</tr>
+</tbody>
+</table>
+<p>Each item also has <code>feedUrl</code>, <code>siteUrl</code>, <code>language</code>, <code>itemId</code> (stable hash), <code>guid</code>, <code>updatedAt</code>, <code>summary</code> (plain text, up to 1,000 characters), <code>categories</code>, <code>imageUrl</code>, <code>enclosures</code> (podcast audio, attachments) and <code>fetchedAt</code>. Dates are always ISO 8601 in UTC, whatever format the feed uses.</p>
+<h2>How to use</h2>
+<ol>
+<li>Add feed URLs or websites to <strong>Feeds or websites</strong>, e.g. <code>https://feeds.bbci.co.uk/news/technology/rss.xml</code> or <code>github.blog</code>.</li>
+<li>Optional: <strong>Max items per feed</strong> (newest first), <strong>Only items from the last N days</strong>, <strong>Keywords</strong>.</li>
+<li>For monitoring, tick <strong>Only new items since the last run</strong> and schedule the tool (e.g. hourly). Give each schedule its own <strong>State key</strong>.</li>
+<li>Tick <strong>Include full item content</strong> to get the full text a feed publishes, not just the summary.</li>
+<li>Tick <strong>Only discover feeds</strong> to just find the feeds on a list of websites (feed URL, title, item count, latest item date).</li>
+</ol>
+<p>A <code>SUMMARY</code> record lists each input with the feed found and how many items it returned. Sites with no feed, or whose robots.txt disallows access, are listed with the reason and not charged.</p>
+<h2>Pricing</h2>
+<p><strong>$0.80 per 1,000 feed items</strong> ($0.0008 per item). Items skipped by "only new" or filters are free. In discovery mode, each feed found counts as one item. Platform usage is included.</p>
+<h2>For AI agents</h2>
+<p>Call it via the Apify API or MCP server with <code>{"feeds": ["github.blog", "theverge.com"], "maxAgeDays": 2, "maxItemsPerFeed": 20}</code>. Every format comes back with the same fields, so an agent can read news from many sources without writing a parser for each one.</p>
+<h2>Data and responsibility</h2>
+<p>The tool reads only feeds that sites publish openly for readers. It follows each site's robots.txt and skips sites that restrict access instead of getting around it. Author names and other personal fields are not collected: you get the item's title, link, dates, summary, categories and media links. Content belongs to its publishers, so check their terms before republishing it in full.</p>
+<h2>Support</h2>
+<p>Found a bug or need a field? Open an issue on this page and we'll reply within one working day.</p>
+<p>Built and maintained by <strong>Dataset Works</strong>.</p></article><p><a class="btn" href="https://apify.com/datasetworks/rss-feed-to-json" rel="sponsored">Open RSS &amp; Atom Feed Reader to JSON (with Feed Discovery) on Apify</a></p><h2>Guides</h2><ul><li><a href="/guides/monitor-rss-feeds-and-get-only-new-items/">Monitor RSS feeds and get only the new items, as JSON</a></li></ul></main>
+<footer><p>Dataset Works builds data tools that do one job well, from public business data only. Tools run on the <a href="https://apify.com" rel="sponsored">Apify</a> platform, which handles accounts and billing. Questions or bugs: open an issue on the tool's Apify page.</p><p>© 2026 Dataset Works</p></footer>
+</body></html>
