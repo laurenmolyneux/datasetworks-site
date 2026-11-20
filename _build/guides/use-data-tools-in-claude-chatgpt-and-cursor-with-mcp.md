@@ -1,6 +1,6 @@
 ---
 title: How to use Dataset Works tools in Claude, ChatGPT and Cursor (MCP)
-description: Connect all eight Dataset Works data tools to your AI assistant through the Model Context Protocol, so it can look up tenders, jobs, websites and domains for you.
+description: Connect all nine Dataset Works data tools to your AI assistant through the Model Context Protocol, so it can look up tenders, jobs, websites and domains for you.
 ---
 Every Dataset Works tool can be called by an AI assistant through the **Model Context Protocol (MCP)**. You connect once, and then you can ask in plain English: "find open UK tenders for school catering this week", "what is Ramp hiring for?", or "check SPF and DMARC for these 30 domains". The assistant picks the right tool, runs it and reads the results.
 
@@ -8,10 +8,10 @@ The tools run on Apify, which hosts the MCP server and handles billing, so you p
 
 ## The MCP server address
 
-Use this URL to get all eight tools:
+Use this URL to get all nine tools:
 
 ```
-https://mcp.apify.com/?tools=datasetworks/public-tenders,datasetworks/company-jobs,datasetworks/web-to-text,datasetworks/website-tech-stack,datasetworks/domain-dns-ssl-lookup,datasetworks/website-seo-audit,datasetworks/shopify-store-products,datasetworks/news-trend-monitor
+https://mcp.apify.com/?tools=datasetworks/public-tenders,datasetworks/company-jobs,datasetworks/web-to-text,datasetworks/website-tech-stack,datasetworks/domain-dns-ssl-lookup,datasetworks/website-seo-audit,datasetworks/european-company-registry,datasetworks/rss-feed-to-json,datasetworks/news-trend-monitor
 ```
 
 Or load just one, for example `https://mcp.apify.com/?tools=datasetworks/public-tenders`.
@@ -30,7 +30,7 @@ Add this to your MCP configuration (for Cursor, `~/.cursor/mcp.json`), using an 
 {
   "mcpServers": {
     "dataset-works": {
-      "url": "https://mcp.apify.com/?tools=datasetworks/public-tenders,datasetworks/company-jobs,datasetworks/web-to-text,datasetworks/website-tech-stack,datasetworks/domain-dns-ssl-lookup,datasetworks/website-seo-audit,datasetworks/shopify-store-products,datasetworks/news-trend-monitor",
+      "url": "https://mcp.apify.com/?tools=datasetworks/public-tenders,datasetworks/company-jobs,datasetworks/web-to-text,datasetworks/website-tech-stack,datasetworks/domain-dns-ssl-lookup,datasetworks/website-seo-audit,datasetworks/european-company-registry,datasetworks/rss-feed-to-json,datasetworks/news-trend-monitor",
       "headers": { "Authorization": "Bearer YOUR_APIFY_TOKEN" }
     }
   }
@@ -53,8 +53,9 @@ ChatGPT supports remote MCP servers as connectors in developer mode. Add a new c
 | A website's tech stack and company profile | [website-tech-stack](/tools/website-tech-stack/) |
 | DNS, SSL expiry, SPF and DMARC for domains | [domain-dns-ssl-lookup](/tools/domain-dns-ssl-lookup/) |
 | SEO issues and broken links on a site | [website-seo-audit](/tools/website-seo-audit/) |
-| Products and prices from Shopify stores | [shopify-store-products](/tools/shopify-store-products/) |
 | News mentions and trends for a topic | [news-trend-monitor](/tools/news-trend-monitor/) |
+| Company records from French, Norwegian and Finnish registers | [european-company-registry](/tools/european-company-registry/) |
+| New items from RSS, Atom and JSON feeds | [rss-feed-to-json](/tools/rss-feed-to-json/) |
 
 ## Tips for good results
 

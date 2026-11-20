@@ -1,12 +1,12 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>How to use Dataset Works tools in Claude, ChatGPT and Cursor (MCP) | Dataset Works</title><meta name="description" content="Connect all eight Dataset Works data tools to your AI assistant through the Model Context Protocol, so it can look up tenders, jobs, websites and domains for yo"><link rel="canonical" href="https://datasetworks.dev/guides/use-data-tools-in-claude-chatgpt-and-cursor-with-mcp/">
-<meta property="og:title" content="How to use Dataset Works tools in Claude, ChatGPT and Cursor (MCP) | Dataset Works"><meta property="og:description" content="Connect all eight Dataset Works data tools to your AI assistant through the Model Context Protocol, so it can look up tenders, jobs, websites and domains for yo"><meta property="og:site_name" content="Dataset Works">
+<title>How to use Dataset Works tools in Claude, ChatGPT and Cursor (MCP) | Dataset Works</title><meta name="description" content="Connect all nine Dataset Works data tools to your AI assistant through the Model Context Protocol, so it can look up tenders, jobs, websites and domains for you"><link rel="canonical" href="https://datasetworks.dev/guides/use-data-tools-in-claude-chatgpt-and-cursor-with-mcp/">
+<meta property="og:title" content="How to use Dataset Works tools in Claude, ChatGPT and Cursor (MCP) | Dataset Works"><meta property="og:description" content="Connect all nine Dataset Works data tools to your AI assistant through the Model Context Protocol, so it can look up tenders, jobs, websites and domains for you"><meta property="og:site_name" content="Dataset Works">
 <meta property="og:image" content="https://datasetworks.dev/logo-icon-512.png"><link rel="icon" href="/logo-icon.svg"><link rel="stylesheet" href="/style.css"></head><body>
 <header><img src="/logo-icon.svg" alt=""><a class="brand" href="/">Dataset Works</a></header>
 <main><article><h1>How to use Dataset Works tools in Claude, ChatGPT and Cursor (MCP)</h1><p>Every Dataset Works tool can be called by an AI assistant through the <strong>Model Context Protocol (MCP)</strong>. You connect once, and then you can ask in plain English: "find open UK tenders for school catering this week", "what is Ramp hiring for?", or "check SPF and DMARC for these 30 domains". The assistant picks the right tool, runs it and reads the results.</p>
 <p>The tools run on Apify, which hosts the MCP server and handles billing, so you pay per result and nothing else.</p>
 <h2>The MCP server address</h2>
-<p>Use this URL to get all eight tools:</p>
+<p>Use this URL to get all nine tools:</p>
 <pre><code>https://mcp.apify.com/?tools=datasetworks/public-tenders,datasetworks/company-jobs,datasetworks/web-to-text,datasetworks/website-tech-stack,datasetworks/domain-dns-ssl-lookup,datasetworks/website-seo-audit,datasetworks/european-company-registry,datasetworks/rss-feed-to-json,datasetworks/news-trend-monitor
 </code></pre>
 <p>Or load just one, for example <code>https://mcp.apify.com/?tools=datasetworks/public-tenders</code>.</p>

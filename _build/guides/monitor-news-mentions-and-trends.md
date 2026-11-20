@@ -1,13 +1,13 @@
 ---
 title: Monitor news mentions and trending topics for any company or keyword
-description: Get recent news articles and Hacker News discussions for a list of keywords, plus a simple trend score showing whether coverage is rising or falling.
+description: Get recent worldwide news articles, in 100+ languages, for a list of keywords, plus a simple trend score showing whether coverage is rising or falling.
 tool: news-trend-monitor
 ---
 Media monitoring services are expensive and mostly built for PR teams. If you just need to know what's being written about a few companies, products or topics, and whether that coverage is growing, a scheduled data run does the job.
 
 ## What you get
 
-The [News & Trend Monitor](/tools/news-trend-monitor/) searches worldwide news (via the open GDELT project) and Hacker News for each term, and returns one row per article: `title`, `url`, `domain`, `publishedAt`, `sourceCountry`, `language`, and for Hacker News the `points` and `comments`.
+The [News & Trend Monitor](/tools/news-trend-monitor/) searches worldwide online news (via the open GDELT project) for each term, and returns one row per article: `title`, `url`, `domain`, `publishedAt`, `sourceCountry` and `language`.
 
 A summary per term gives article counts, a volume timeline and `changePercent`: how much coverage grew or shrank between the first and second half of the time window.
 
