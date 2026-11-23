@@ -1,0 +1,25 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Extract text from PDFs for LLMs and RAG | Dataset Works</title><meta name="description" content="Turn PDF reports, filings, papers and manuals at public URLs into clean text, per-page text and RAG-ready chunks."><link rel="canonical" href="https://datasetworks.dev/guides/extract-text-from-pdfs-for-llms-and-rag/">
+<meta property="og:title" content="Extract text from PDFs for LLMs and RAG | Dataset Works"><meta property="og:description" content="Turn PDF reports, filings, papers and manuals at public URLs into clean text, per-page text and RAG-ready chunks."><meta property="og:site_name" content="Dataset Works">
+<meta property="og:image" content="https://datasetworks.dev/logo-icon-512.png"><link rel="icon" href="/logo-icon.svg"><link rel="stylesheet" href="/style.css"></head><body>
+<header><img src="/logo-icon.svg" alt=""><a class="brand" href="/">Dataset Works</a></header>
+<main><article><h1>Extract text from PDFs for LLMs and RAG</h1><p>A lot of the useful information on the web is locked in PDFs: annual reports, tender documents, research papers, product manuals, price lists. Language models can't read a PDF link directly, and copying text out by hand doesn't scale past a handful of files.</p>
+<h2>What you get</h2>
+<p><a href="/tools/pdf-to-text/">PDF to Text</a> downloads each PDF and returns its <code>text</code>, plus <code>pageCount</code>, <code>title</code>, <code>subject</code>, <code>language</code>, <code>createdAt</code> and <code>modifiedAt</code>. Turn on per-page text to get a <code>pages</code> list (handy when an answer needs to cite a page number), or set a chunk size to get <code>chunks</code> that go straight into an embedding step.</p>
+<h2>Steps</h2>
+<ol>
+<li>Paste the PDF links, e.g. a set of annual reports or tender documents.</li>
+<li>Optional: set <strong>Chunk size for RAG</strong> (around 1,000 to 2,000 characters works for most embedding models) and <strong>Max characters per PDF</strong> to fit a model's context window.</li>
+<li>Run, then export JSON or pull it from the API.</li>
+</ol>
+<pre><code>curl -X POST &quot;https://api.apify.com/v2/acts/datasetworks~pdf-to-text/run-sync-get-dataset-items?token=YOUR_TOKEN&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;startUrls&quot;: [{&quot;url&quot;: &quot;https://www.irs.gov/pub/irs-pdf/fw9.pdf&quot;}], &quot;chunkSize&quot;: 1500}'
+</code></pre>
+<h2>Use it from an AI agent</h2>
+<p>The tool is available through Apify's MCP server, so an agent in Claude, Cursor or any MCP client can read a PDF it finds while researching. For HTML pages, use <a href="/tools/web-to-text/">Web to Text</a> instead.</p>
+<h2>What it can't do</h2>
+<p>It reads the text layer inside the PDF. Scanned, image-only PDFs come back with <code>hasTextLayer: false</code> (OCR isn't included), and password-protected files are skipped and not charged. It follows each site's robots.txt and never logs in.</p>
+<p>Cost: $3 per 1,000 PDFs, any number of pages, no start fee.</p><p><a class="btn" href="https://apify.com/datasetworks/pdf-to-text" rel="sponsored">Try the tool on Apify</a></p></article></main>
+<footer><p>Dataset Works builds data tools that do one job well, from public business data only. Tools run on the <a href="https://apify.com" rel="sponsored">Apify</a> platform, which handles accounts and billing. Questions or bugs: open an issue on the tool's Apify page.</p><p>© 2026 Dataset Works</p></footer>
+</body></html>

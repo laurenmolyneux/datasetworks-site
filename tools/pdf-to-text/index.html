@@ -1,0 +1,51 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PDF to Text for AI: Extract Text from PDF URLs | Dataset Works</title><meta name="description" content="Extract clean text from PDF files at public URLs, with page count, title, dates, per-page text and RAG-ready chunks. Fast, no browser, respects robots.txt."><link rel="canonical" href="https://datasetworks.dev/tools/pdf-to-text/">
+<meta property="og:title" content="PDF to Text for AI: Extract Text from PDF URLs | Dataset Works"><meta property="og:description" content="Extract clean text from PDF files at public URLs, with page count, title, dates, per-page text and RAG-ready chunks. Fast, no browser, respects robots.txt."><meta property="og:site_name" content="Dataset Works">
+<meta property="og:image" content="https://datasetworks.dev/logo-icon-512.png"><link rel="icon" href="/logo-icon.svg"><link rel="stylesheet" href="/style.css"></head><body>
+<header><img src="/logo-icon.svg" alt=""><a class="brand" href="/">Dataset Works</a></header>
+<main><section class="hero"><h1>PDF to Text for AI: Extract Text from PDF URLs</h1><p>Extract clean text from PDF files at public URLs, with page count, title, dates, per-page text and RAG-ready chunks. Fast, no browser, respects robots.txt.</p>
+<p><a class="btn" href="https://apify.com/datasetworks/pdf-to-text" rel="sponsored">Try it on Apify</a> <span class="price">$3.00 per 1,000 pdf extracteds</span></p></section>
+<article><p><strong>Turn PDF files at public URLs into clean text, ready for an LLM, a RAG pipeline or an AI agent.</strong></p>
+<p>Give it links to PDFs (reports, filings, papers, manuals, tender documents, price lists). It downloads each file, reads its text layer and returns clean text plus page count, title, subject and dates. Optional per-page text lets you cite page numbers, and optional chunks drop straight into a vector database. No browser, so results come back in seconds.</p>
+<h2>Sample output</h2>
+<table>
+<thead>
+<tr>
+<th>url</th>
+<th>title</th>
+<th>pageCount</th>
+<th>wordCount</th>
+<th>text (start)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>https://www.irs.gov/pub/irs-pdf/fw9.pdf</td>
+<td>Form W-9 (Rev. March 2024)</td>
+<td>6</td>
+<td>6,306</td>
+<td><code>Form W-9 (Rev. March 2024) Request for Taxpayer Identification Number and Certification ...</code></td>
+</tr>
+</tbody>
+</table>
+<p>Each result also has <code>status</code>, <code>finalUrl</code>, <code>httpStatus</code>, <code>subject</code>, <code>language</code>, <code>createdAt</code>, <code>modifiedAt</code>, <code>pagesExtracted</code>, <code>fileSizeBytes</code>, <code>charCount</code>, <code>hasTextLayer</code>, <code>truncated</code>, <code>fetchedAt</code> and, if you ask for them, <code>pages</code> (text per page) and <code>chunks</code> (RAG-ready pieces).</p>
+<h2>How to use</h2>
+<ol>
+<li>Paste one or more PDF links into <strong>PDF URLs</strong>.</li>
+<li>Optional: turn on <strong>Include text per page</strong>, set a <strong>Chunk size for RAG</strong>, or limit <strong>Max pages per PDF</strong> and <strong>Max characters per PDF</strong> to fit a model's context window.</li>
+<li>Run, then export as JSON, CSV or Excel, or read results via the API.</li>
+</ol>
+<p>Files that can't be read are listed with <code>status: "failed"</code> or <code>"skipped"</code> and a reason, and are not charged.</p>
+<h2>Pricing</h2>
+<p><strong>$3 per 1,000 PDFs extracted</strong> ($0.003 per PDF, any number of pages). No start fee. Failed and skipped files are free. Platform usage is included.</p>
+<h2>For AI agents</h2>
+<p>Call it through the Apify API or the Apify MCP server with <code>{"startUrls": [{"url": "https://example.com/report.pdf"}], "maxCharsPerPdf": 30000}</code> and read <code>text</code> from the result. Every result has the same fields, and errors come back as data rather than crashes, so agents can handle them. Pair it with <a href="https://apify.com/datasetworks/web-to-text">Web Page to Markdown &amp; Clean Text for AI</a> for HTML pages.</p>
+<h2>Limits</h2>
+<p>This tool reads the text layer inside the PDF. Scanned or image-only PDFs have no text layer: they come back with <code>hasTextLayer: false</code> and a note (OCR is not included). Password-protected PDFs, files behind a login and files over the size limit are skipped. Sites whose robots.txt disallows automated access are skipped.</p>
+<h2>Data and responsibility</h2>
+<p>The tool fetches only public files, identifies itself honestly as DatasetWorksBot, follows robots.txt and crawl delays, and never logs in or gets around captchas or blocks. It does not return the PDF's author field. You are responsible for how you use the content you extract, including copyright and any personal data in the files you choose.</p>
+<h2>Support</h2>
+<p>Found a bug or need a feature? Open an issue on this page and we'll reply within one working day.</p>
+<p>Built and maintained by <strong>Dataset Works</strong>.</p></article><p><a class="btn" href="https://apify.com/datasetworks/pdf-to-text" rel="sponsored">Open PDF to Text for AI: Extract Text from PDF URLs on Apify</a></p><h2>Guides</h2><ul><li><a href="/guides/extract-text-from-pdfs-for-llms-and-rag/">Extract text from PDFs for LLMs and RAG</a></li></ul></main>
+<footer><p>Dataset Works builds data tools that do one job well, from public business data only. Tools run on the <a href="https://apify.com" rel="sponsored">Apify</a> platform, which handles accounts and billing. Questions or bugs: open an issue on the tool's Apify page.</p><p>© 2026 Dataset Works</p></footer>
+</body></html>
