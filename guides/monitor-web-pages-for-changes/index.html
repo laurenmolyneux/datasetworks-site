@@ -1,0 +1,36 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Monitor web pages for changes and get only what changed | Dataset Works</title><meta name="description" content="Watch competitor pricing pages, terms, docs and public notices on a schedule. Get the lines that were added or removed, and pay nothing for pages that stayed th"><link rel="canonical" href="https://datasetworks.dev/guides/monitor-web-pages-for-changes/">
+<meta property="og:title" content="Monitor web pages for changes and get only what changed | Dataset Works"><meta property="og:description" content="Watch competitor pricing pages, terms, docs and public notices on a schedule. Get the lines that were added or removed, and pay nothing for pages that stayed th"><meta property="og:site_name" content="Dataset Works">
+<meta property="og:image" content="https://datasetworks.dev/logo-icon-512.png"><link rel="icon" href="/logo-icon.svg"><link rel="stylesheet" href="/style.css"></head><body>
+<header><img src="/logo-icon.svg" alt=""><a class="brand" href="/">Dataset Works</a></header>
+<main><article><h1>Monitor web pages for changes and get only what changed</h1><p>Plenty of the pages that matter to a business have no feed and no alerts: a competitor's pricing page, a supplier's terms, a product's documentation, a regulator's notices page. The usual answer is to check them by hand, or to diff raw HTML and drown in noise from ads, menus and timestamps.</p>
+<p>The Web Page to Markdown tool has a monitor mode that compares only each page's main text, so you hear about real content changes and nothing else.</p>
+<h2>Common uses</h2>
+<p><strong>Competitor pricing and plans.</strong> Get told when a rival changes a price, renames a plan or adds a feature to a tier.</p>
+<p><strong>Terms, policies and legal pages.</strong> Track changes to suppliers' and platforms' terms of service, privacy policies and API terms.</p>
+<p><strong>Documentation and changelogs.</strong> Watch the docs your product depends on for new limits, deprecations or breaking changes.</p>
+<p><strong>Public notices.</strong> Follow notice boards, consultation pages and tender pages that are only published as plain web pages.</p>
+<h2>How to set it up</h2>
+<ol>
+<li>Open the tool on the Apify Store and paste the pages you want to watch into <strong>URLs</strong>.</li>
+<li>Turn on <strong>Only return new or changed pages (monitor mode)</strong>.</li>
+<li>Give the job a <strong>Monitor name</strong>, such as <code>competitor-pricing</code>, so different jobs keep separate memory.</li>
+<li>Save the input as a task and add a schedule (for example, daily at 8am).</li>
+</ol>
+<p>The first run returns every page with <code>changeStatus: "new"</code>. After that, each run returns only pages whose text changed, with <code>changeStatus: "changed"</code>, the time of the previous check, and up to 50 <code>addedLines</code> and <code>removedLines</code>. Pages that did not change are left out and are not charged.</p>
+<p>Example input for an AI agent or the API:</p>
+<pre><code class="language-json">{
+  &quot;startUrls&quot;: [{ &quot;url&quot;: &quot;https://example.com/pricing&quot; }],
+  &quot;onlyChanged&quot;: true,
+  &quot;monitorKey&quot;: &quot;competitor-pricing&quot;,
+  &quot;outputFormats&quot;: [&quot;text&quot;]
+}
+</code></pre>
+<h2>Cutting out noise</h2>
+<p>Lines such as "5 minutes ago" are ignored by default, so live timestamps on news and status pages don't count as changes. If a page has other moving parts, such as a visitor counter or a rotating quote, set <strong>Ignore lines matching</strong> to a regular expression that matches those lines.</p>
+<h2>What it costs</h2>
+<p>$1 per 1,000 pages converted. In monitor mode you pay only for new and changed pages, so watching 50 pages daily where a few change each week costs a few cents a month.</p>
+<h2>Good manners built in</h2>
+<p>The tool reads only public pages, follows robots.txt and crawl delays, identifies itself honestly, and never logs in or gets around blocks. Pages that need JavaScript to show their content may return little text.</p><p><a class="btn" href="https://apify.com/datasetworks/web-to-text" rel="sponsored">Try the tool on Apify</a></p></article></main>
+<footer><p>Dataset Works builds data tools that do one job well, from public business data only. Tools run on the <a href="https://apify.com" rel="sponsored">Apify</a> platform, which handles accounts and billing. Questions or bugs: open an issue on the tool's Apify page.</p><p>© 2026 Dataset Works</p></footer>
+</body></html>

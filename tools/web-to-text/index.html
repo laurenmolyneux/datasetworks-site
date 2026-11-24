@@ -1,9 +1,9 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Web Page to Markdown &amp; Clean Text for AI | Dataset Works</title><meta name="description" content="Turn any web page into clean Markdown or plain text for LLMs, RAG and AI agents. Strips menus, ads and boilerplate. Fast, cheap at $1 per 1,000 pages, respects "><link rel="canonical" href="https://datasetworks.dev/tools/web-to-text/">
-<meta property="og:title" content="Web Page to Markdown &amp; Clean Text for AI | Dataset Works"><meta property="og:description" content="Turn any web page into clean Markdown or plain text for LLMs, RAG and AI agents. Strips menus, ads and boilerplate. Fast, cheap at $1 per 1,000 pages, respects "><meta property="og:site_name" content="Dataset Works">
+<title>Web Page to Markdown &amp; Clean Text for AI | Dataset Works</title><meta name="description" content="Turn any web page into clean Markdown or plain text for LLMs, RAG and AI agents, or monitor pages and get only what changed. Strips menus and boilerplate. $1 pe"><link rel="canonical" href="https://datasetworks.dev/tools/web-to-text/">
+<meta property="og:title" content="Web Page to Markdown &amp; Clean Text for AI | Dataset Works"><meta property="og:description" content="Turn any web page into clean Markdown or plain text for LLMs, RAG and AI agents, or monitor pages and get only what changed. Strips menus and boilerplate. $1 pe"><meta property="og:site_name" content="Dataset Works">
 <meta property="og:image" content="https://datasetworks.dev/logo-icon-512.png"><link rel="icon" href="/logo-icon.svg"><link rel="stylesheet" href="/style.css"></head><body>
 <header><img src="/logo-icon.svg" alt=""><a class="brand" href="/">Dataset Works</a></header>
-<main><section class="hero"><h1>Web Page to Markdown &amp; Clean Text for AI</h1><p>Turn any web page into clean Markdown or plain text for LLMs, RAG and AI agents. Strips menus, ads and boilerplate. Fast, cheap at $1 per 1,000 pages, respects robots.txt.</p>
+<main><section class="hero"><h1>Web Page to Markdown &amp; Clean Text for AI</h1><p>Turn any web page into clean Markdown or plain text for LLMs, RAG and AI agents, or monitor pages and get only what changed. Strips menus and boilerplate. $1 per 1,000 pages, respects robots.txt.</p>
 <p><a class="btn" href="https://apify.com/datasetworks/web-to-text" rel="sponsored">Try it on Apify</a> <span class="price">$1.00 per 1,000 pages</span></p></section>
 <article><p><strong>Turn any web page into clean Markdown or plain text, ready for an LLM, a RAG pipeline or an AI agent.</strong></p>
 <p>Give it URLs. It fetches each page, strips menus, cookie banners, sidebars and footers, and returns the main content as tidy Markdown (headings, lists, links and tables kept) and/or plain text. Fast and lightweight: no browser, results in seconds.</p>
@@ -41,8 +41,16 @@
 <li>Run, then export as JSON, CSV or Excel, or read results via the API.</li>
 </ol>
 <p>Pages that can't be converted are listed with <code>status: "failed"</code> or <code>"skipped"</code> and a reason, and are not charged.</p>
+<h2>Monitor pages for changes</h2>
+<p>Turn on <strong>Only return new or changed pages</strong> and schedule the run (hourly, daily...). The tool remembers each page's text between runs:</p>
+<ul>
+<li>First run: every page comes back with <code>changeStatus: "new"</code>.</li>
+<li>Later runs: only pages whose main text changed come back, with <code>changeStatus: "changed"</code>, <code>previousCheckedAt</code>, <code>addedLines</code> and <code>removedLines</code> (up to 50 each).</li>
+<li>Unchanged pages are left out and <strong>not charged</strong>.</li>
+</ul>
+<p>Lines like "5 minutes ago" are ignored by default so live timestamps don't count as changes; set <strong>Ignore lines matching</strong> to your own pattern for other noise. Use <strong>Monitor name</strong> to keep separate memory for different jobs, for example <code>competitor-pricing</code> and <code>docs-updates</code>. Good for competitor pricing pages, terms and policy pages, documentation, job pages and public notices.</p>
 <h2>Pricing</h2>
-<p><strong>$1 per 1,000 pages converted</strong> ($0.001 per page). Failed and skipped pages are free. Platform usage is included.</p>
+<p><strong>$1 per 1,000 pages converted</strong> ($0.001 per page). Failed and skipped pages, and unchanged pages in monitor mode, are free. Platform usage is included.</p>
 <h2>For AI agents</h2>
 <p>Call it through the Apify API or the Apify MCP server with <code>{"startUrls": [{"url": "https://example.com/article"}], "maxCharsPerPage": 20000}</code> and read <code>markdown</code> from the result. Every result has the same fields, and errors come back as data rather than crashes, so agents can handle them.</p>
 <h2>Limits</h2>
@@ -51,6 +59,6 @@
 <p>The tool fetches only public pages, identifies itself honestly as DatasetWorksBot, follows robots.txt and crawl delays, and never logs in or gets around captchas or blocks. You are responsible for how you use the content you convert, including copyright and any personal data on the pages you choose.</p>
 <h2>Support</h2>
 <p>Found a bug or need a feature? Open an issue on this page and we'll reply within one working day.</p>
-<p>Built and maintained by <strong>Dataset Works</strong>.</p></article><p><a class="btn" href="https://apify.com/datasetworks/web-to-text" rel="sponsored">Open Web Page to Markdown &amp; Clean Text for AI on Apify</a></p><h2>Guides</h2><ul><li><a href="/guides/convert-websites-to-markdown-for-llms/">Convert web pages to clean Markdown for LLMs and RAG</a></li></ul></main>
+<p>Built and maintained by <strong>Dataset Works</strong>.</p></article><p><a class="btn" href="https://apify.com/datasetworks/web-to-text" rel="sponsored">Open Web Page to Markdown &amp; Clean Text for AI on Apify</a></p><h2>Guides</h2><ul><li><a href="/guides/convert-websites-to-markdown-for-llms/">Convert web pages to clean Markdown for LLMs and RAG</a></li><li><a href="/guides/monitor-web-pages-for-changes/">Monitor web pages for changes and get only what changed</a></li></ul></main>
 <footer><p>Dataset Works builds data tools that do one job well, from public business data only. Tools run on the <a href="https://apify.com" rel="sponsored">Apify</a> platform, which handles accounts and billing. Questions or bugs: open an issue on the tool's Apify page.</p><p>© 2026 Dataset Works</p></footer>
 </body></html>
