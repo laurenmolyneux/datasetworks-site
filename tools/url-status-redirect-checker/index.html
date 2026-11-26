@@ -1,0 +1,83 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bulk URL Status &amp; Redirect Checker: HTTP Codes, Chains, Headers | Dataset Works</title><meta name="description" content="Check a list of URLs for HTTP status codes, full redirect chains, loops, broken links, response time and security headers. Expands short links. Respects robots."><link rel="canonical" href="https://datasetworks.dev/tools/url-status-redirect-checker/">
+<meta property="og:title" content="Bulk URL Status &amp; Redirect Checker: HTTP Codes, Chains, Headers | Dataset Works"><meta property="og:description" content="Check a list of URLs for HTTP status codes, full redirect chains, loops, broken links, response time and security headers. Expands short links. Respects robots."><meta property="og:site_name" content="Dataset Works">
+<meta property="og:image" content="https://datasetworks.dev/logo-icon-512.png"><link rel="icon" href="/logo-icon.svg"><link rel="stylesheet" href="/style.css"></head><body>
+<header><img src="/logo-icon.svg" alt=""><a class="brand" href="/">Dataset Works</a></header>
+<main><section class="hero"><h1>Bulk URL Status &amp; Redirect Checker: HTTP Codes, Chains, Headers</h1><p>Check a list of URLs for HTTP status codes, full redirect chains, loops, broken links, response time and security headers. Expands short links. Respects robots.txt. Built for SEO, site migrations and AI agents.</p>
+<p><a class="btn" href="https://apify.com/datasetworks/url-status-redirect-checker" rel="sponsored">Try it on Apify</a> <span class="price">$0.50 per 1,000 url checkeds</span></p></section>
+<article><p><strong>Check thousands of URLs for HTTP status codes, full redirect chains, loops, broken links, response times and security headers, in one clean row per URL.</strong></p>
+<p>Paste a list of URLs (or bare domains). For each one the tool follows every redirect hop and tells you where it ends up, which status code it returns, how long it took, the page title, and which security headers the final page sends. Short links (bit.ly and the like) are expanded to their real destination.</p>
+<h2>Sample output</h2>
+<table>
+<thead>
+<tr>
+<th>url</th>
+<th>category</th>
+<th>statusCode</th>
+<th>finalUrl</th>
+<th>redirectCount</th>
+<th>securityHeadersScore</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>http://apify.com/</td>
+<td>ok</td>
+<td>200</td>
+<td>https://apify.com/</td>
+<td>1</td>
+<td>4</td>
+</tr>
+<tr>
+<td>https://httpbin.org/redirect/3</td>
+<td>ok</td>
+<td>200</td>
+<td>https://httpbin.org/get</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr>
+<td>https://httpbin.org/status/404</td>
+<td>client-error</td>
+<td>404</td>
+<td>https://httpbin.org/status/404</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>https://nonexistent-domain-dw-test-xyz.com/</td>
+<td>unreachable</td>
+<td></td>
+<td></td>
+<td>0</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Each row also has <code>ok</code>, <code>redirectChain</code> (every hop with its status code, location and time), <code>redirectLoop</code>, <code>tooManyRedirects</code>, <code>httpsUpgrade</code> (http was redirected to https), <code>finalIsHttps</code>, <code>crossDomainRedirect</code>, <code>responseTimeMs</code>, <code>totalTimeMs</code>, <code>contentType</code>, <code>contentLength</code>, <code>title</code>, <code>server</code>, <code>lastModified</code>, <code>xRobotsTag</code>, <code>canonicalHeader</code>, <code>securityHeaders</code> (HSTS, CSP, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy), <code>error</code> and <code>checkedAt</code>.</p>
+<p><code>category</code> is one of <code>ok</code>, <code>redirect</code> (3xx when not following redirects), <code>client-error</code> (4xx), <code>server-error</code> (5xx), <code>redirect-loop</code>, <code>too-many-redirects</code>, <code>redirect-error</code>, <code>timeout</code>, <code>ssl-error</code>, <code>unreachable</code> (e.g. the domain doesn't resolve), <code>stopped</code> (a redirect pointed to a page that robots.txt blocks), <code>skipped</code> (blocked by robots.txt) or <code>invalid</code>.</p>
+<h2>How to use</h2>
+<ol>
+<li>Paste URLs into <strong>URLs</strong>, one per line (up to 20,000 per run).</li>
+<li>Optional: turn off <strong>Follow redirects</strong> to see only the first response, or pick <strong>HEAD</strong> for a faster headers-only check.</li>
+<li>Run, then export as CSV, Excel or JSON, or call it from the API. Schedule it to catch links that break.</li>
+</ol>
+<h2>Use cases</h2>
+<ul>
+<li><strong>Site migrations and SEO:</strong> confirm every old URL 301s to the right new page in one hop, with no chains or loops.</li>
+<li><strong>Broken link checks:</strong> find 404s and dead domains in a list of outbound links, backlinks or a CMS export.</li>
+<li><strong>Short link expansion:</strong> see where bit.ly and other short links really lead before you use them.</li>
+<li><strong>Security header audits:</strong> spot sites missing HSTS, CSP or X-Frame-Options.</li>
+<li><strong>AI agents:</strong> let an agent check whether a link is alive and where it goes, before it cites or fetches it.</li>
+</ul>
+<h2>Pricing</h2>
+<p><strong>$0.50 per 1,000 URLs</strong> ($0.0005 per URL checked), with no start fee. Invalid URLs and URLs skipped because of robots.txt are free. Platform usage is included.</p>
+<h2>For AI agents</h2>
+<p>Call it via the Apify API or MCP server with <code>{"urls": ["https://example.com"]}</code>. You get one object per URL with fixed field names. Use <code>category</code> and <code>ok</code> to branch, <code>finalUrl</code> for the real destination and <code>redirectChain</code> for the hops.</p>
+<h2>Data and responsibility</h2>
+<p>The tool only requests the URLs you give it, plus each site's robots.txt. It identifies itself honestly as DatasetWorksBot, respects robots.txt (a blocked URL is reported as <code>skipped</code> and not requested) and its crawl delay, and sends at most one request at a time to each site. It never logs in or bypasses captchas or blocks: a 403 or 429 is reported as it is. It reads at most 128 KB of each page, only to find the title, and returns no personal data.</p>
+<h2>Support</h2>
+<p>Need another header or field? Open an issue on this page and we'll reply within one working day.</p>
+<p>Built and maintained by <strong>Dataset Works</strong>.</p></article><p><a class="btn" href="https://apify.com/datasetworks/url-status-redirect-checker" rel="sponsored">Open Bulk URL Status &amp; Redirect Checker: HTTP Codes, Chains, Headers on Apify</a></p><h2>Guides</h2><ul><li><a href="/guides/check-redirects-and-broken-links-in-bulk/">How to check redirects and broken links for thousands of URLs at once</a></li></ul></main>
+<footer><p>Dataset Works builds data tools that do one job well, from public business data only. Tools run on the <a href="https://apify.com" rel="sponsored">Apify</a> platform, which handles accounts and billing. Questions or bugs: open an issue on the tool's Apify page.</p><p>© 2026 Dataset Works</p></footer>
+</body></html>
