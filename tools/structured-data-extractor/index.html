@@ -1,0 +1,72 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Structured Data Extractor: JSON-LD, Schema.org, Open Graph | Dataset Works</title><meta name="description" content="Extract JSON-LD, schema.org microdata, Open Graph, Twitter Card and meta tags from any list of URLs, plus a ready link preview (title, description, image). Resp"><link rel="canonical" href="https://datasetworks.dev/tools/structured-data-extractor/">
+<meta property="og:title" content="Structured Data Extractor: JSON-LD, Schema.org, Open Graph | Dataset Works"><meta property="og:description" content="Extract JSON-LD, schema.org microdata, Open Graph, Twitter Card and meta tags from any list of URLs, plus a ready link preview (title, description, image). Resp"><meta property="og:site_name" content="Dataset Works">
+<meta property="og:image" content="https://datasetworks.dev/logo-icon-512.png"><link rel="icon" href="/logo-icon.svg"><link rel="stylesheet" href="/style.css"></head><body>
+<header><img src="/logo-icon.svg" alt=""><a class="brand" href="/">Dataset Works</a></header>
+<main><section class="hero"><h1>Structured Data Extractor: JSON-LD, Schema.org, Open Graph</h1><p>Extract JSON-LD, schema.org microdata, Open Graph, Twitter Card and meta tags from any list of URLs, plus a ready link preview (title, description, image). Respects robots.txt. Built for SEO audits, product data and AI agents.</p>
+<p><a class="btn" href="https://apify.com/datasetworks/structured-data-extractor" rel="sponsored">Try it on Apify</a> <span class="price">$0.80 per 1,000 page extracteds</span></p></section>
+<article><p><strong>Pull JSON-LD, schema.org microdata, Open Graph, Twitter Card and meta tags from any list of URLs, plus a ready-made link preview, in one clean row per page.</strong></p>
+<p>Paste page URLs (or bare domains). For each page the tool returns every schema.org item it finds (Product, Recipe, Organization, FAQPage, Article, Event, BreadcrumbList and more), the Open Graph and Twitter Card tags, the canonical URL, language, favicon, RSS feeds and hreflang links, and a <code>linkPreview</code> object with the title, description, image and site name you would show in a chat or CMS card.</p>
+<h2>Sample output</h2>
+<table>
+<thead>
+<tr>
+<th>url</th>
+<th>status</th>
+<th>title</th>
+<th>schemaTypes</th>
+<th>jsonLdCount</th>
+<th>image</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>https://www.bbc.co.uk/food/recipes/easy_chocolate_cake_31070</td>
+<td>ok</td>
+<td>Easy chocolate cake recipe</td>
+<td>Recipe, AggregateRating, VideoObject, Organization</td>
+<td>6</td>
+<td>https://ichef.bbci.co.uk/...jpg</td>
+</tr>
+<tr>
+<td>https://www.gov.uk/vat-rates</td>
+<td>ok</td>
+<td>VAT rates - GOV.UK</td>
+<td>FAQPage, WebPage, BreadcrumbList</td>
+<td>2</td>
+<td>https://www.gov.uk/...png</td>
+</tr>
+<tr>
+<td>https://apify.com/</td>
+<td>ok</td>
+<td>Apify: Marketplace of ready-to-run tools for AI</td>
+<td>Organization, WebSite, SoftwareApplication, Offer</td>
+<td>3</td>
+<td>https://apify.com/og-image...</td>
+</tr>
+</tbody>
+</table>
+<p>Each row also has <code>finalUrl</code>, <code>statusCode</code>, <code>description</code>, <code>siteName</code>, <code>favicon</code>, <code>canonical</code>, <code>lang</code>, <code>robotsMeta</code>, <code>keywords</code>, <code>ogType</code>, <code>linkPreview</code>, <code>hasOpenGraph</code>, <code>hasTwitterCard</code>, <code>openGraph</code> (all og:, article:, product: tags), <code>twitterCard</code>, <code>jsonLd</code> (every block, <code>@graph</code> flattened), <code>jsonLdParseErrors</code>, <code>microdata</code>, <code>microdataCount</code>, <code>feeds</code>, <code>hreflang</code>, <code>amp</code>, <code>oembed</code>, <code>personalDataFieldsRemoved</code>, <code>error</code> and <code>extractedAt</code>. Turn on <strong>Include all meta tags</strong> to get every other meta tag as well.</p>
+<p><code>status</code> is one of <code>ok</code>, <code>http-error</code> (4xx/5xx), <code>not-html</code>, <code>unreachable</code>, <code>too-many-redirects</code>, <code>skipped</code> (blocked by robots.txt) or <code>invalid</code>.</p>
+<h2>How to use</h2>
+<ol>
+<li>Paste URLs into <strong>URLs</strong>, one per line (up to 20,000 per run).</li>
+<li>Optional: switch off JSON-LD or microdata if you only need meta tags and the link preview.</li>
+<li>Run, then export as JSON, CSV or Excel, or call it from the API or MCP.</li>
+</ol>
+<h2>Use cases</h2>
+<ul>
+<li><strong>SEO audits:</strong> check which pages have valid schema.org markup (Product, FAQ, Breadcrumb, Recipe) and Open Graph tags, and which have JSON-LD that fails to parse.</li>
+<li><strong>Product and price data:</strong> read Product and Offer data (name, SKU, price, currency, availability) that shops publish for search engines.</li>
+<li><strong>Link previews:</strong> build preview cards for chat apps, newsletters or CMS link fields.</li>
+<li><strong>Competitor monitoring:</strong> track how competitors mark up their pages and when it changes.</li>
+<li><strong>AI agents and RAG:</strong> give an agent the structured facts of a page (type, name, price, dates, ratings) without parsing HTML.</li>
+</ul>
+<h2>Privacy and fair use</h2>
+<p>Public pages only. robots.txt is respected (including crawl-delay), each site gets one request at a time, and sites that refuse automated requests (403/429) are reported, never bypassed. No logins or captchas. To keep personal data out, schema.org <code>Person</code> items and person fields such as <code>author</code>, <code>creator</code>, <code>founder</code>, <code>employee</code> and <code>review</code> are removed, along with author meta tags; <code>personalDataFieldsRemoved</code> counts what was dropped.</p>
+<h2>Pricing</h2>
+<p><strong>$0.80 per 1,000 pages</strong> ($0.0008 per page extracted), with no start fee. Pages that fail, are not HTML, are skipped by robots.txt or are invalid are free. Platform usage is included.</p>
+<h2>For AI agents</h2>
+<p>Call it via the Apify API or MCP server with <code>{"urls": ["https://example.com"]}</code>. You get one object per URL with fixed field names. Use <code>schemaTypes</code> to see what a page is, <code>jsonLd</code> for the full data and <code>linkPreview</code> for a summary.</p></article><p><a class="btn" href="https://apify.com/datasetworks/structured-data-extractor" rel="sponsored">Open Structured Data Extractor: JSON-LD, Schema.org, Open Graph on Apify</a></p><h2>Guides</h2><ul><li><a href="/guides/extract-json-ld-schema-org-and-open-graph-from-any-url/">How to extract JSON-LD, schema.org and Open Graph data from any list of URLs</a></li></ul></main>
+<footer><p>Dataset Works builds data tools that do one job well, from public business data only. Tools run on the <a href="https://apify.com" rel="sponsored">Apify</a> platform, which handles accounts and billing. Questions or bugs: open an issue on the tool's Apify page.</p><p>© 2026 Dataset Works</p></footer>
+</body></html>
