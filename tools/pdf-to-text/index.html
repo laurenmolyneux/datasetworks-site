@@ -1,12 +1,44 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>PDF to Text for AI: Extract Text from PDF URLs | Dataset Works</title><meta name="description" content="Extract clean text from PDF files at public URLs, with page count, title, dates, per-page text and RAG-ready chunks. Fast, no browser, respects robots.txt."><link rel="canonical" href="https://datasetworks.dev/tools/pdf-to-text/">
-<meta property="og:title" content="PDF to Text for AI: Extract Text from PDF URLs | Dataset Works"><meta property="og:description" content="Extract clean text from PDF files at public URLs, with page count, title, dates, per-page text and RAG-ready chunks. Fast, no browser, respects robots.txt."><meta property="og:site_name" content="Dataset Works">
+<title>PDF, Word, Excel &amp; PowerPoint to Text for AI and RAG | Dataset Works</title><meta name="description" content="Extract clean text from PDF, Word (DOCX), PowerPoint (PPTX), Excel (XLSX), OpenDocument and EPUB files at public URLs, with per-page or per-slide text and RAG-r"><link rel="canonical" href="https://datasetworks.dev/tools/pdf-to-text/">
+<meta property="og:title" content="PDF, Word, Excel &amp; PowerPoint to Text for AI and RAG | Dataset Works"><meta property="og:description" content="Extract clean text from PDF, Word (DOCX), PowerPoint (PPTX), Excel (XLSX), OpenDocument and EPUB files at public URLs, with per-page or per-slide text and RAG-r"><meta property="og:site_name" content="Dataset Works">
 <meta property="og:image" content="https://datasetworks.dev/logo-icon-512.png"><link rel="icon" href="/logo-icon.svg"><link rel="stylesheet" href="/style.css"></head><body>
 <header><img src="/logo-icon.svg" alt=""><a class="brand" href="/">Dataset Works</a></header>
-<main><section class="hero"><h1>PDF to Text for AI: Extract Text from PDF URLs</h1><p>Extract clean text from PDF files at public URLs, with page count, title, dates, per-page text and RAG-ready chunks. Fast, no browser, respects robots.txt.</p>
+<main><section class="hero"><h1>PDF, Word, Excel &amp; PowerPoint to Text for AI and RAG</h1><p>Extract clean text from PDF, Word (DOCX), PowerPoint (PPTX), Excel (XLSX), OpenDocument and EPUB files at public URLs, with per-page or per-slide text and RAG-ready chunks. No browser, respects robots.txt.</p>
 <p><a class="btn" href="https://apify.com/datasetworks/pdf-to-text" rel="sponsored">Try it on Apify</a> <span class="price">$3.00 per 1,000 pdf extracteds</span></p></section>
-<article><p><strong>Turn PDF files at public URLs into clean text, ready for an LLM, a RAG pipeline or an AI agent.</strong></p>
-<p>Give it links to PDFs (reports, filings, papers, manuals, tender documents, price lists). It downloads each file, reads its text layer and returns clean text plus page count, title, subject and dates. Optional per-page text lets you cite page numbers, and optional chunks drop straight into a vector database. No browser, so results come back in seconds.</p>
+<article><p><strong>Turn PDF, Word, PowerPoint, Excel, OpenDocument and EPUB files at public URLs into clean text, ready for an LLM, a RAG pipeline or an AI agent.</strong></p>
+<p>Give it links to documents (reports, filings, papers, manuals, tender packs, slide decks, price lists, spreadsheets, e-books). It downloads each file, detects the format from the file itself and returns clean text plus title, subject, dates and page, slide or sheet count. Optional per-page text lets you cite a page, slide or sheet, and optional chunks drop straight into a vector database. No browser, so results come back in seconds.</p>
+<h2>Supported formats</h2>
+<table>
+<thead>
+<tr>
+<th>Format</th>
+<th>What you get</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PDF</td>
+<td>Text layer, page by page</td>
+</tr>
+<tr>
+<td>Word <code>.docx</code>, OpenDocument <code>.odt</code></td>
+<td>Paragraphs, tables as tab-separated rows</td>
+</tr>
+<tr>
+<td>PowerPoint <code>.pptx</code>, OpenDocument <code>.odp</code></td>
+<td>Text per slide, plus speaker notes (PPTX)</td>
+</tr>
+<tr>
+<td>Excel <code>.xlsx</code>, OpenDocument <code>.ods</code></td>
+<td>Each sheet as tab-separated rows under a <code>## Sheet name</code> heading</td>
+</tr>
+<tr>
+<td>EPUB</td>
+<td>Text per chapter, in reading order</td>
+</tr>
+</tbody>
+</table>
+<p>Each result has a <code>format</code> field. Old binary <code>.doc</code>, <code>.xls</code> and <code>.ppt</code> files are not supported and are not charged.</p>
 <h2>Sample output</h2>
 <table>
 <thead>
@@ -26,26 +58,33 @@
 <td>6,306</td>
 <td><code>Form W-9 (Rev. March 2024) Request for Taxpayer Identification Number and Certification ...</code></td>
 </tr>
+<tr>
+<td>https://assets.publishing.service.gov.uk/media/68a352e032d2c63f869343b7/nts0001.ods</td>
+<td>Sample numbers on which analyses are based</td>
+<td>3 (sheets)</td>
+<td>462</td>
+<td><code>## Cover_sheet NTS0001: Sample numbers on which analyses are based: England, 1995 onwards ...</code></td>
+</tr>
 </tbody>
 </table>
-<p>Each result also has <code>status</code>, <code>finalUrl</code>, <code>httpStatus</code>, <code>subject</code>, <code>language</code>, <code>createdAt</code>, <code>modifiedAt</code>, <code>pagesExtracted</code>, <code>fileSizeBytes</code>, <code>charCount</code>, <code>hasTextLayer</code>, <code>truncated</code>, <code>fetchedAt</code> and, if you ask for them, <code>pages</code> (text per page) and <code>chunks</code> (RAG-ready pieces).</p>
+<p>Each result also has <code>status</code>, <code>format</code>, <code>pageUnit</code> (slide, sheet or chapter for non-PDF files), <code>finalUrl</code>, <code>httpStatus</code>, <code>subject</code>, <code>language</code>, <code>createdAt</code>, <code>modifiedAt</code>, <code>pagesExtracted</code>, <code>fileSizeBytes</code>, <code>charCount</code>, <code>hasTextLayer</code>, <code>truncated</code>, <code>fetchedAt</code> and, if you ask for them, <code>pages</code> (text per page) and <code>chunks</code> (RAG-ready pieces).</p>
 <h2>How to use</h2>
 <ol>
-<li>Paste one or more PDF links into <strong>PDF URLs</strong>.</li>
-<li>Optional: turn on <strong>Include text per page</strong>, set a <strong>Chunk size for RAG</strong>, or limit <strong>Max pages per PDF</strong> and <strong>Max characters per PDF</strong> to fit a model's context window.</li>
+<li>Paste one or more file links into <strong>Document URLs</strong>.</li>
+<li>Optional: turn on <strong>Include text per page / slide / sheet</strong>, set a <strong>Chunk size for RAG</strong>, or limit <strong>Max pages per file</strong> and <strong>Max characters per file</strong> to fit a model's context window.</li>
 <li>Run, then export as JSON, CSV or Excel, or read results via the API.</li>
 </ol>
 <p>Files that can't be read are listed with <code>status: "failed"</code> or <code>"skipped"</code> and a reason, and are not charged.</p>
 <h2>Pricing</h2>
-<p><strong>$3 per 1,000 PDFs extracted</strong> ($0.003 per PDF, any number of pages). No start fee. Failed and skipped files are free. Platform usage is included.</p>
+<p><strong>$3 per 1,000 documents extracted</strong> ($0.003 per file, any number of pages, slides or sheets, any supported format). No start fee. Failed and skipped files are free. Platform usage is included.</p>
 <h2>For AI agents</h2>
-<p>Call it through the Apify API or the Apify MCP server with <code>{"startUrls": [{"url": "https://example.com/report.pdf"}], "maxCharsPerPdf": 30000}</code> and read <code>text</code> from the result. Every result has the same fields, and errors come back as data rather than crashes, so agents can handle them. Pair it with <a href="https://apify.com/datasetworks/web-to-text">Web Page to Markdown &amp; Clean Text for AI</a> for HTML pages.</p>
+<p>Call it through the Apify API or the Apify MCP server with <code>{"startUrls": [{"url": "https://example.com/report.pdf"}], "maxCharsPerPdf": 30000}</code> and read <code>text</code> from the result. Every result has the same fields, and errors come back as data rather than crashes, so agents can handle them. Pair it with <a href="https://apify.com/datasetworks/web-to-text">Web Page to Markdown &amp; Clean Text for AI</a> for HTML pages. Use <code>format</code> to route results, and <code>pages</code> to cite a page, slide or sheet.</p>
 <h2>Limits</h2>
-<p>This tool reads the text layer inside the PDF. Scanned or image-only PDFs have no text layer: they come back with <code>hasTextLayer: false</code> and a note (OCR is not included). Password-protected PDFs, files behind a login and files over the size limit are skipped. Sites whose robots.txt disallows automated access are skipped.</p>
+<p>This tool reads text stored in the file. For PDFs that is the text layer. Scanned or image-only PDFs have no text layer: they come back with <code>hasTextLayer: false</code> and a note (OCR is not included). Password-protected or encrypted files, images inside documents, formulas (spreadsheets return the last saved values), files behind a login and files over the size limit are skipped. Sites whose robots.txt disallows automated access are skipped.</p>
 <h2>Data and responsibility</h2>
-<p>The tool fetches only public files, identifies itself honestly as DatasetWorksBot, follows robots.txt and crawl delays, and never logs in or gets around captchas or blocks. It does not return the PDF's author field. You are responsible for how you use the content you extract, including copyright and any personal data in the files you choose.</p>
+<p>The tool fetches only public files, identifies itself honestly as DatasetWorksBot, follows robots.txt and crawl delays, and never logs in or gets around captchas or blocks. It does not return author, creator or last-modified-by fields, and skips comments in OpenDocument files. You are responsible for how you use the content you extract, including copyright and any personal data in the files you choose.</p>
 <h2>Support</h2>
 <p>Found a bug or need a feature? Open an issue on this page and we'll reply within one working day.</p>
-<p>Built and maintained by <strong>Dataset Works</strong>.</p></article><p><a class="btn" href="https://apify.com/datasetworks/pdf-to-text" rel="sponsored">Open PDF to Text for AI: Extract Text from PDF URLs on Apify</a></p><h2>Guides</h2><ul><li><a href="/guides/extract-text-from-pdfs-for-llms-and-rag/">Extract text from PDFs for LLMs and RAG</a></li></ul></main>
+<p>Built and maintained by <strong>Dataset Works</strong>.</p></article><p><a class="btn" href="https://apify.com/datasetworks/pdf-to-text" rel="sponsored">Open PDF, Word, Excel &amp; PowerPoint to Text for AI and RAG on Apify</a></p><h2>Guides</h2><ul><li><a href="/guides/extract-text-from-pdfs-for-llms-and-rag/">Extract text from PDFs for LLMs and RAG</a></li><li><a href="/guides/extract-text-from-word-excel-powerpoint-files-for-ai/">Extract text from Word, Excel and PowerPoint files for AI</a></li></ul></main>
 <footer><p>Dataset Works builds data tools that do one job well, from public business data only. Tools run on the <a href="https://apify.com" rel="sponsored">Apify</a> platform, which handles accounts and billing. Questions or bugs: open an issue on the tool's Apify page.</p><p>© 2026 Dataset Works</p></footer>
 </body></html>

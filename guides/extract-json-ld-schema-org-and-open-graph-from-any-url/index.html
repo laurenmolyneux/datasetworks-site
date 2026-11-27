@@ -1,0 +1,40 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to extract JSON-LD, schema.org and Open Graph data from any list of URLs | Dataset Works</title><meta name="description" content="Get every page&#x27;s schema.org items (Product, Recipe, FAQ, Organization), Open Graph and Twitter Card tags and a ready link preview as JSON or a spreadsheet, with"><link rel="canonical" href="https://datasetworks.dev/guides/extract-json-ld-schema-org-and-open-graph-from-any-url/">
+<meta property="og:title" content="How to extract JSON-LD, schema.org and Open Graph data from any list of URLs | Dataset Works"><meta property="og:description" content="Get every page&#x27;s schema.org items (Product, Recipe, FAQ, Organization), Open Graph and Twitter Card tags and a ready link preview as JSON or a spreadsheet, with"><meta property="og:site_name" content="Dataset Works">
+<meta property="og:image" content="https://datasetworks.dev/logo-icon-512.png"><link rel="icon" href="/logo-icon.svg"><link rel="stylesheet" href="/style.css"></head><body>
+<header><img src="/logo-icon.svg" alt=""><a class="brand" href="/">Dataset Works</a></header>
+<main><article><h1>How to extract JSON-LD, schema.org and Open Graph data from any list of URLs</h1><p>Most websites already publish clean, machine-readable facts about each page for search engines: the product's price and availability, the recipe's cooking time, the FAQ's questions, the company's logo and address. That data sits in JSON-LD blocks, schema.org microdata and Open Graph tags. Reading it is much more reliable than scraping the visible page.</p>
+<h2>What you get</h2>
+<p>For each URL, the <a href="/tools/structured-data-extractor/">Structured Data Extractor</a> returns one row with:</p>
+<ul>
+<li><code>schemaTypes</code>: every schema.org type on the page, e.g. <code>Product</code>, <code>Offer</code>, <code>Recipe</code>, <code>FAQPage</code>, <code>BreadcrumbList</code>, <code>Organization</code></li>
+<li><code>jsonLd</code>: every JSON-LD block, with <code>@graph</code> lists flattened into separate items</li>
+<li><code>microdata</code>: schema.org items marked up with <code>itemscope</code> and <code>itemprop</code></li>
+<li><code>openGraph</code> and <code>twitterCard</code>: all <code>og:</code>, <code>article:</code>, <code>product:</code> and <code>twitter:</code> tags</li>
+<li><code>linkPreview</code>: title, description, image, site name and URL, ready for a preview card</li>
+<li><code>canonical</code>, <code>lang</code>, <code>favicon</code>, <code>feeds</code> (RSS/Atom), <code>hreflang</code> and <code>jsonLdParseErrors</code></li>
+</ul>
+<h2>Steps</h2>
+<ol>
+<li>Open the tool on Apify and paste your URLs into <strong>URLs</strong>, one per line (up to 20,000 per run).</li>
+<li>Run it. Several sites are read in parallel, one request at a time per site.</li>
+<li>Export as JSON for the full nested data, or CSV/Excel for the overview columns.</li>
+</ol>
+<h2>Ideas</h2>
+<ul>
+<li><strong>Schema markup audit:</strong> filter <code>jsonLdCount = 0</code> to find pages with no structured data, and <code>jsonLdParseErrors &gt; 0</code> to find broken JSON-LD that search engines ignore.</li>
+<li><strong>Product feeds:</strong> read <code>Product</code> and <code>Offer</code> items for name, SKU, price, currency and availability from shops that publish them.</li>
+<li><strong>Link previews:</strong> use <code>linkPreview</code> to render cards in a chat app, newsletter or CMS.</li>
+<li><strong>AI agents:</strong> give an agent the page's facts as structured JSON instead of raw HTML.</li>
+</ul>
+<h2>Call it from code or an AI agent</h2>
+<pre><code>curl -X POST &quot;https://api.apify.com/v2/acts/datasetworks~structured-data-extractor/run-sync-get-dataset-items?token=YOUR_TOKEN&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;urls&quot;: [&quot;https://www.bbc.co.uk/food/recipes/easy_chocolate_cake_31070&quot;]}'
+</code></pre>
+<h2>Privacy</h2>
+<p>robots.txt is respected and sites that refuse automated requests are reported, never bypassed. Schema.org <code>Person</code> items and person fields such as <code>author</code> and <code>review</code> are removed, so the output holds business and page data only.</p>
+<h2>Cost</h2>
+<p>$0.80 per 1,000 pages, no start fee. Failed, non-HTML and robots-skipped URLs are free. Extracting 5,000 product pages costs $4.</p><p><a class="btn" href="https://apify.com/datasetworks/structured-data-extractor" rel="sponsored">Try the tool on Apify</a></p></article></main>
+<footer><p>Dataset Works builds data tools that do one job well, from public business data only. Tools run on the <a href="https://apify.com" rel="sponsored">Apify</a> platform, which handles accounts and billing. Questions or bugs: open an issue on the tool's Apify page.</p><p>© 2026 Dataset Works</p></footer>
+</body></html>
