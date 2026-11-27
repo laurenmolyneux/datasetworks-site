@@ -1,0 +1,36 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Extract text from Word, Excel and PowerPoint files for AI | Dataset Works</title><meta name="description" content="Turn DOCX, XLSX, PPTX, OpenDocument and EPUB files at public URLs into clean text, per-slide or per-sheet text and RAG-ready chunks."><link rel="canonical" href="https://datasetworks.dev/guides/extract-text-from-word-excel-powerpoint-files-for-ai/">
+<meta property="og:title" content="Extract text from Word, Excel and PowerPoint files for AI | Dataset Works"><meta property="og:description" content="Turn DOCX, XLSX, PPTX, OpenDocument and EPUB files at public URLs into clean text, per-slide or per-sheet text and RAG-ready chunks."><meta property="og:site_name" content="Dataset Works">
+<meta property="og:image" content="https://datasetworks.dev/logo-icon-512.png"><link rel="icon" href="/logo-icon.svg"><link rel="stylesheet" href="/style.css"></head><body>
+<header><img src="/logo-icon.svg" alt=""><a class="brand" href="/">Dataset Works</a></header>
+<main><article><h1>Extract text from Word, Excel and PowerPoint files for AI</h1><p>Not every useful document is a PDF. Government statistics come as spreadsheets, tender packs come as Word files, investor updates come as slide decks, and long guides come as e-books. An AI agent or a RAG pipeline needs all of them as plain text.</p>
+<h2>What you get</h2>
+<p><a href="/tools/pdf-to-text/">PDF, Word, Excel &amp; PowerPoint to Text</a> takes links to files and detects the format from the file itself, so a link without an extension still works. Each result has a <code>format</code> field (<code>pdf</code>, <code>docx</code>, <code>pptx</code>, <code>xlsx</code>, <code>odt</code>, <code>ods</code>, <code>odp</code> or <code>epub</code>) and the <code>text</code>, plus <code>title</code>, <code>subject</code>, <code>createdAt</code> and <code>modifiedAt</code> where the file has them.</p>
+<ul>
+<li><strong>Word and ODT</strong>: paragraphs in order, with tables as tab-separated rows.</li>
+<li><strong>PowerPoint and ODP</strong>: text slide by slide, plus speaker notes for PPTX.</li>
+<li><strong>Excel and ODS</strong>: each sheet as tab-separated rows under a <code>## Sheet name</code> heading.</li>
+<li><strong>EPUB</strong>: chapters in reading order.</li>
+</ul>
+<p>Turn on per-page text and you get a <code>pages</code> list with one entry per PDF page, slide, sheet or chapter (sheets carry their <code>name</code>), so an answer can say where it came from. Set a chunk size to get <code>chunks</code> ready for an embedding step.</p>
+<h2>Steps</h2>
+<ol>
+<li>Open the tool on Apify and paste your file links into <strong>Document URLs</strong>. You can mix PDFs, spreadsheets and slide decks in one run.</li>
+<li>Optional: set <strong>Max characters per file</strong> to fit your model's context, or <strong>Max pages per file</strong> to read only the first few slides or sheets.</li>
+<li>Run it and export as JSON, CSV or Excel, or call it from the Apify API or MCP server.</li>
+</ol>
+<pre><code class="language-json">{
+  &quot;startUrls&quot;: [
+    { &quot;url&quot;: &quot;https://assets.publishing.service.gov.uk/media/68a352e032d2c63f869343b7/nts0001.ods&quot; },
+    { &quot;url&quot;: &quot;https://example.com/tender-pack.docx&quot; }
+  ],
+  &quot;includePages&quot;: true,
+  &quot;maxCharsPerPdf&quot;: 30000
+}
+</code></pre>
+<h2>Cost</h2>
+<p>$0.003 per file read, whatever the format and however many pages, slides or sheets it has. No start fee. Files that fail, are blocked by robots.txt or are in an old binary format (<code>.doc</code>, <code>.xls</code>, <code>.ppt</code>) are free.</p>
+<h2>Good to know</h2>
+<p>Spreadsheets return the values saved in the file, not the formulas. Images inside documents are not read (no OCR). The tool never returns author, creator or last-modified-by fields, and it skips comments in OpenDocument files.</p><p><a class="btn" href="https://apify.com/datasetworks/pdf-to-text" rel="sponsored">Try the tool on Apify</a></p></article></main>
+<footer><p>Dataset Works builds data tools that do one job well, from public business data only. Tools run on the <a href="https://apify.com" rel="sponsored">Apify</a> platform, which handles accounts and billing. Questions or bugs: open an issue on the tool's Apify page.</p><p>© 2026 Dataset Works</p></footer>
+</body></html>
